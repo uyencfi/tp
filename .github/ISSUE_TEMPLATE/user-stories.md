@@ -1,7 +1,7 @@
 ---
 name: User Stories
 about: For adding user stories
-title: 'Add '
+title: Add/Delete/Search <something>
 labels: type.Story
 assignees: ''
 
@@ -9,4 +9,4 @@ assignees: ''
 
 ### User Story
 
-As a <!-- user type/role --> I can <!-- function --> so that <!-- benefit -->
+As a <!-- user type/role --> I can <!-- function --> so that <!-- benefit -->.
