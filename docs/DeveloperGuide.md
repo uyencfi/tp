@@ -257,29 +257,59 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* teaching assistant for one or more modules
+* has a need to manage details of a significant number of students, including:
+  * contact details (including name, email, phone number, Telegram handle)
+  * attendance
+  * class participation
+  * assignments (including due date, grade, completion status etc.)
+  * assessments (exams, tests, practical assessments)
+  * students' strengths and weaknesses
+* has a need to keep track of tasks to prepare for each module
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage students and classes faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​       | I want to …​                             | So that I can…​                                             |
+| -------- | ---------------- | ------------------------------------------- | -------------------------------------------------------------- |
+| `* * *`  | new user         | view the a list of commands and their usage | refer to instructions when I forget how to use EdRecord        |
+| `* * *`  | user             | add a student's contact                     | contact them later                                             |
+| `* * *`  | user             | delete a student's contact                  | remove a student who is no longer in the tutorial group/module |
+| `* * *`  | user             | edit a student's contact                    | can have their most updated contact details                    |
+| `* * *`  | user             | list all students I have                    | see all the students that I have                               |
+| `* * *`  | user             | find students by name                       | locate details of students without having to go through the entire list |
+| `* * *`  | user with multiple modules | create a new module with information such as the current academic year | separate students from different modules |
+| `* * *`  | user with multiple classes in the same module | create a new class within a module with information such as venue and date/time | differentiate students based on their class |
+| `* * *`  | user             | assign a student to their class             |                                                                |
+| `* * *`  | user             | save and load my data                       | do not need to enter all my data each time I launch EdRecord   |
+| `* *`    | user             | use a command to exit EdRecord              | do not need to use my mouse                                    |
+| `* *`    | user             | clear all students                          | restart my address book at the end of each semester            |
+| `* *`    | user             | update module details                       | fix any mistakes when creating the module                      |
+| `* *`    | user             | delete module                               | remove completed or unused modules                             |
+| `* *`    | user             | mark students' attendance                   | keep track of their attendance                                 |
+| `* *`    | user             | track students' class participation         | calculate class participation grade at the end of the semester |
+| `* *`    | user             | create a module/class-wide assignment with information such as due date, maximum marks and weightage | keep track of this assignment for each student |
+| `* *`    | user             | update assignment details                   | fix any mistakes made when creating the assignment             |
+| `* *`    | user             | delete an assignment                        | remove assignments that are completed or irrelevant            |
+| `* *`    | user             | update assignment status for each student   | track the completion status ("Not yet submitted", "Submitted", "Graded") and grade of individual student |
+| `* *`    | user             | create a module/class-wide assessment with details such as grade and follow-up actions | track the performance of individual students |
+| `*`      | user             | tag a student                               | categorise and filter my students by tags                      |
+| `*`      | user             | filter by tags                              | see only students relevant to my current task                  |
+| `*`      | user             | filter students with incomplete tasks       | easily find students who have tasks which are overdue          |
+| `*`      | user             | batch add students' contacts                | add the entire class/module at once                            |
+| `*`      | user             | view a list of pending tasks for me         | easily check what tasks I need to complete                     |
+| `*`      | user             | archive a module after it is completed      | hide old students' contacts when the semester is over          |
+| `*`      | user teaching for more than 1 semester | archive module data when the semester is over | hide old students' contacts but kept in storage for future reference |
+| `*`      | experienced user | search for students based on criteria such as strong/weak points or grades above/below a certain threshold | tailor my teaching to students' specific needs |
+| `*`      | experienced user | add custom aliases for commands             | speed up my use of the application                             |
+| `*`      | experienced user | modify the data file directly               | quickly update student information without having to go through the application commands |
 
 ### Use cases
 
