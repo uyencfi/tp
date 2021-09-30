@@ -156,7 +156,7 @@ Format: `exit`
 
 ### Saving the data
 
-EdRecord data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EdRecord data is saved in the hard disk automatically (as a JSON file `[JAR file location]/data/edrecord.json`) after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
