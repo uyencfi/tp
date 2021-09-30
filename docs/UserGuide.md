@@ -158,13 +158,13 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from EdRecord.
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits EdRecord.
 
 Format: `exit`
 
@@ -204,3 +204,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list [TAG]…​`
 **Help** | `help`
+**Exit** | `exit`
