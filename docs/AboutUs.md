@@ -49,9 +49,9 @@ You can reach us at the email `caikaian[at]comp.nus.edu.sg`
 
 ### Ngo Ngoc Phuong <ins>Uyen</ins>
 
-<img src="images/marcusc55.png" width="200px">
+<img src="images/uyencfi.png" width="200px">
 
-[[github](http://github.com/marcusc55)]
+[[github](http://github.com/uyencfi)]
 
 * Role: Testing
 * Responsibilities: Ensures the testing of the project is done properly and on time
