@@ -259,9 +259,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * teaching assistant for one or more modules
 * has a need to manage details of a significant number of students, including:
-  * contact details
+  * contact details (including name, email, phone number, Telegram handle)
   * attendance
-  * grades
+  * class participation
+  * assignments (including due date, grade, completion status etc.)
+  * assessments (exams, tests, practical assessments)
+  * students' strengths and weaknesses
 * has a need to keep track of tasks to prepare for each module
 * prefer desktop apps over other types
 * can type fast
