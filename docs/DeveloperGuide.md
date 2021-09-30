@@ -549,15 +549,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: UC11 - Add custom command aliases**
 
+**MSS**
+
+1.  User requests to an alias for a command.
+2.  EdRecord adds the alias.
+    Use case ends.
+
+**Extensions**
+
+* 1a. The alias is already in use.
+  
+    * 1a1. EdRecord shows an error message. 
+  
+      Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4. System responds to all user inputs within 1 second.
 
 ### Glossary
 
