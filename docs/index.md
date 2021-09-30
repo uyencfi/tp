@@ -8,7 +8,9 @@ title: EdRecord
 
 ![Ui](images/Ui.png)
 
-**EdRecord is a desktop application for keeping track of your students.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+
+**EdRecord is a desktop application for teaching staff to easily monitor their classes, having an overview of their grades and deadlines track.** 
+It is optimized for **CLI users** so that frequent tasks can be done faster by typing in commands.
 
 - If you are interested in using EdRecord, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 - If you are interested about developing EdRecord, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
