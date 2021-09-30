@@ -91,7 +91,7 @@ Examples:
 
 Shows a list of all students matching the specified tags or list of all students if no tags are specified.
 
-Format: `list [TAG]`
+Format: `list [TAG]…​`
 
 ### Editing a person : `edit`
 
@@ -187,5 +187,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list [TAG]…​`
 **Help** | `help`
