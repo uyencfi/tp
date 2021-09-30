@@ -26,7 +26,7 @@ EdRecord is a **desktop app for managing student contacts, optimized for use via
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to EdRecord.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
