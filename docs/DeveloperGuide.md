@@ -312,17 +312,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | experienced user | modify the data file directly               | quickly update student information without having to go through the application commands |
 
 ### Use cases
+(For all use cases below, the **System** is `EdRecord` and the **Actor** is the `user`, unless specified otherwise)
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
+**Use case: UC1 - Create a new class in a module**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to create a new class for a module.
+2.  EdRecord adds the new class to the specified module.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The module does not exist.
+
+    * 1a1. EdRecord shows an error message prompting user to create the module first.
+
+      Use case ends.
+
+**Use case: UC2 - Add a student contact**
+
+**MSS**
+
+1.  User requests to add a new student contact.
+2.  EdRecord adds the new student.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. User does not provide required fields name, phone, email
+
+    * 1a1. EdRecord shows an error message.
+    
+      Use case ends.
+
+**Use case: UC3 - Edit a student contact**
+
+**MSS**
+
+1.  User requests to list student.
+2.  EdRecord shows a list of student.
+3.  User requests to edit a specific student in the list and provides fields to be edited.
+4.  EdRecord edits the student accordingly.
 
     Use case ends.
 
@@ -334,11 +367,189 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. EdRecord shows an error message.
+
+      Use case resumes at step 2.
+    
+* 3b. User does not specify any valid fields to edit.
+
+    * 3b1. EdRecord shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: UC4 - Delete a student contact**
+
+**MSS**
+
+1.  User requests to list students.
+2.  EdRecord shows a list of students.
+3.  User requests to delete a specific student in the list.
+4.  EdRecord deletes the student.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. EdRecord shows an error message.
+
+      Use case resumes at step 2.
+    
+**Use case: UC5 - Assign a student to their class**
+
+**MSS**
+
+1.  User requests to add a student to a class.
+2.  EdRecord adds the student to the specified class.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The class does not exist.
+
+    * 1a1. EdRecord shows an error message prompting user to create the class first.
+
+      Use case ends.
+
+**Use case: UC6 - Edit module details**
+
+**MSS**
+
+1.  User requests to list modules.
+2.  EdRecord shows a list of modules.
+3.  User requests to edit a specific module in the list and provides fields to be edited.
+4.  EdRecord edits the module details accordingly.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. EdRecord shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 3b. User does not specify any valid fields to edit.
+
+    * 3b1. EdRecord shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC7 - Delete a module**
+
+**MSS**
+
+1.  User requests to list modules.
+2.  EdRecord shows a list of modules.
+3.  User requests to delete a specific module in the list.
+4.  EdRecord deletes the module.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. EdRecord shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC8 - Create an assignment**
+
+**MSS**
+
+1.  User requests to create a new assignment.
+2.  EdRecord creates the new assignment for the module/class.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User does not specify if this assignment a module-wide or class-wide assignment
+    * 1a1. EdRecord shows an error message.
+
+      Use case ends.
+
+* 1b. User does not provide required fields due date, maximum marks and assignment weightage
+
+    * 1b1. EdRecord shows an error message.
+
+      Use case ends.
+    
+**Use case: UC9 - Edit assignment details**
+
+**MSS**
+
+1.  User requests to list assignments in a module/class.
+2.  EdRecord shows a list of assignment.
+3.  User requests to edit a specific assignment in the list and provides fields to be edited.
+4.  EdRecord edits the assignment details accordingly.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User does not specify which module/class to list the assignments.
+    * 1a1. EdRecord shows an error message.
+
+      Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. EdRecord shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User does not specify any valid fields to edit.
+
+    * 3b1. EdRecord shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC10 - Delete an assignment**
+
+**MSS**
+
+1.  User requests to list assignments in a module/class.
+2.  EdRecord shows a list of assignment.
+3.  User requests to delete a specific assignment in the list.
+4.  EdRecord deletes the assignment.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. EdRecord shows an error message.
+
+      Use case resumes at step 2.
+
+
 
 ### Non-Functional Requirements
 
@@ -352,6 +563,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Module**: An NUS module. It consists of Module coordinators, TAs and students.
+* **TA**: Teaching Assistant. One TA can teach multiple modules in multiple semesters with multiple classes for each module.
+* **Class**: Collection of students taught by one TA. One class is associated with one module, and one venue and time.
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
