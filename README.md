@@ -2,8 +2,8 @@
 
 ![Ui](docs/images/Ui.png)
 
-EdRecord is a **sample project** for **teaching staff (e.g. TAs, profs etc.) who prefer CLI to GUI and have to 
-keep track of their students' information and progress**. 
+**EdRecord is a desktop application for teaching staff to easily monitor their classes, having an overview of their grades and deadlines track.**
+It is optimized for **CLI users** so that frequent tasks can be done faster by typing in commands.
 
 It consolidates information and progress of relevant students for a teaching professional in a CLI to access and update easily.
 
