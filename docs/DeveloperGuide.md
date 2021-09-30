@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User does not provide required fields name, phone, email
+* 1a. User does not provide required fields
 
     * 1a1. EdRecord shows an error message.
     
@@ -352,8 +352,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list student.
-2.  EdRecord shows a list of student.
+1.  User requests to list students.
+2.  EdRecord shows a list of students.
 3.  User requests to edit a specific student in the list and provides fields to be edited.
 4.  EdRecord edits the student accordingly.
 
