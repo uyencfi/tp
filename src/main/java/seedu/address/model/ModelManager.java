@@ -20,28 +20,28 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final EdRecord edRecord;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     private Predicate<Person> selectedModulePredicate;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given edRecord and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEdRecord edRecord, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(edRecord, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + edRecord + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.edRecord = new EdRecord(edRecord);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.edRecord.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new EdRecord(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,37 +74,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setEdRecordFilePath(Path edRecordFilePath) {
+        requireNonNull(edRecordFilePath);
+        userPrefs.setEdRecordFilePath(edRecordFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== EdRecord ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setEdRecord(ReadOnlyEdRecord edRecord) {
+        this.edRecord.resetData(edRecord);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyEdRecord getEdRecord() {
+        return edRecord;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return edRecord.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        edRecord.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        edRecord.addPerson(person);
         setSearchFilter(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -112,14 +112,14 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        edRecord.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedEdRecord}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -155,7 +155,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return edRecord.equals(other.edRecord)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

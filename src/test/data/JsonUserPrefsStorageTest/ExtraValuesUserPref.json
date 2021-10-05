@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "edrecord.json"
+  "edRecordFilePath" : "edrecord.json"
 }

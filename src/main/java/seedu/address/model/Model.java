@@ -42,15 +42,15 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEdRecordFilePath(Path edRecordFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code edRecord}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEdRecord(ReadOnlyEdRecord edRecord);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EdRecord */
+    ReadOnlyEdRecord getEdRecord();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
