@@ -37,7 +37,7 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEdRecordFilePath();
 
     /**
      * Sets the user prefs' address book file path.

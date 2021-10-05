@@ -99,7 +99,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getEdRecordFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
