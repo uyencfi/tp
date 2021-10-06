@@ -14,7 +14,7 @@ public class CdCommand extends Command {
     public static final String COMMAND_WORD = "cd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Changes the currently selected module.\n"
+            + ": Changes the currently selected module. Use '*' to show all modules.\n"
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " CS1101S";
 
