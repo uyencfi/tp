@@ -6,6 +6,9 @@ import seedu.address.model.person.PartOfModulePredicate;
 
 import static java.util.Objects.requireNonNull;
 
+// TODO: Consider updating UI to show the current selected module
+// TODO: Update UG/DG
+
 /**
  * Changes the selected module.
  */
