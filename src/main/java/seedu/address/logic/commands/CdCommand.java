@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.PartOfModulePredicate;
-
-import static java.util.Objects.requireNonNull;
 
 // TODO: Consider updating UI to show the current selected module
 // TODO: Update UG/DG

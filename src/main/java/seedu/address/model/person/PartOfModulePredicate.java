@@ -2,15 +2,15 @@ package seedu.address.model.person;
 
 // TODO: Use a `Module` class instead of String
 
-import seedu.address.model.tag.Tag;
-
 import java.util.function.Predicate;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests if a {@code Person} is part of a module.
  */
 public class PartOfModulePredicate implements Predicate<Person> {
-    public static final PartOfModulePredicate PREDICATE_SHOW_ALL_MODULES  = new PartOfModulePredicate("unused") {
+    public static final PartOfModulePredicate PREDICATE_SHOW_ALL_MODULES = new PartOfModulePredicate("unused") {
         public boolean test(Person person) {
             return true;
         }
