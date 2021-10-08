@@ -127,10 +127,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModuleFilter(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        this.selectedModulePredicate = predicate;
-        filteredPersons.setPredicate(predicate);
+    public void setModuleFilter(Predicate<Person> modulePredicate) {
+        requireNonNull(modulePredicate);
+        this.selectedModulePredicate = modulePredicate;
+        filteredPersons.setPredicate(modulePredicate);
     }
 
     @Override
