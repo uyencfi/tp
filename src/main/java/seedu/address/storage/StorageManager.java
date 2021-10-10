@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ReadOnlyModuleSystem;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -18,14 +19,17 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private ModuleSystemStorage moduleSystemStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, ModuleSystemStorage moduleSystemStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
+        this.moduleSystemStorage = moduleSystemStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -74,6 +78,35 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ ModuleSystem methods ==============================
+
+    @Override
+    public Path getModuleSystemFilePath() {
+        return moduleSystemStorage.getModuleSystemFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyModuleSystem> readModuleSystem() throws DataConversionException, IOException {
+        return readModuleSystem(moduleSystemStorage.getModuleSystemFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyModuleSystem> readModuleSystem(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return moduleSystemStorage.readModuleSystem(filePath);
+    }
+
+    @Override
+    public void saveModuleSystem(ReadOnlyModuleSystem moduleSystem) throws IOException {
+        saveModuleSystem(moduleSystem, moduleSystemStorage.getModuleSystemFilePath());
+    }
+
+    @Override
+    public void saveModuleSystem(ReadOnlyModuleSystem moduleSystem, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        moduleSystemStorage.saveModuleSystem(moduleSystem, filePath);
     }
 
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,11 +9,13 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.MakeModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +123,38 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into an {@code Module} for associating to a Module.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static Module parseModule(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!Module.MODULE_SYSTEM.hasModule(trimmedModuleCode)) {
+            throw new ParseException(Module.MESSAGE_DOES_NOT_EXIST);
+        }
+        return Module.MODULE_SYSTEM.getModule(moduleCode);
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into an {@code Module} for MakeModuleCommand.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static Module parseMakeModule(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!Module.isValidNewModule(trimmedModuleCode)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        } else if (Module.MODULE_SYSTEM.hasModule(moduleCode)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MakeModuleCommand.MESSAGE_DUPLICATE_MODULE));
+        }
+        return new Module(trimmedModuleCode);
     }
 }

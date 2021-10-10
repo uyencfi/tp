@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.module.Module;
 
 /**
  * The API of the Model component.
@@ -75,6 +76,41 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns the user prefs' module system file path.
+     */
+    Path getModuleSystemFilePath();
+
+    /**
+     * Sets the user prefs' module system file path.
+     */
+    void setModuleSystemFilePath(Path moduleSystemFilePath);
+
+    /**
+     * Replaces module system data with the data in {@code moduleSystem}.
+     */
+    void setModuleSystem(ReadOnlyModuleSystem moduleSystem);
+
+    /** Returns the ModuleSystem */
+    ReadOnlyModuleSystem getModuleSystem();
+
+    /**
+     * Returns true if a module with the same code as {@code mod} exists in the module system.
+     */
+    boolean hasModule(Module mod);
+
+    /**
+     * Deletes the given module.
+     * The module must exist in the module system.
+     */
+    void deleteModule(Module target);
+
+    /**
+     * Adds the given module.
+     * {@code person} must not already exist in the address book.
+     */
+    void addModule(Module mod);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
