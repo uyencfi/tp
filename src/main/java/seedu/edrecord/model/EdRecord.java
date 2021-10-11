@@ -9,7 +9,7 @@ import seedu.edrecord.model.person.Person;
 import seedu.edrecord.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the edrecord-book level
+ * Wraps all data at edrecord level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class EdRecord implements ReadOnlyEdRecord {

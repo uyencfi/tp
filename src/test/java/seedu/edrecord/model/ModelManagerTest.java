@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setEdRecordFilePath(Paths.get("edrecord/book/file/path"));
+        userPrefs.setEdRecordFilePath(Paths.get("edrecord/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setEdRecordFilePath(Paths.get("new/edrecord/book/file/path"));
+        userPrefs.setEdRecordFilePath(Paths.get("new/edrecord/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,7 +67,7 @@ public class ModelManagerTest {
 
     @Test
     public void setEdRecordFilePath_validPath_setsEdRecordFilePath() {
-        Path path = Paths.get("edrecord/book/file/path");
+        Path path = Paths.get("edrecord/file/path");
         modelManager.setEdRecordFilePath(path);
         assertEquals(path, modelManager.getEdRecordFilePath());
     }

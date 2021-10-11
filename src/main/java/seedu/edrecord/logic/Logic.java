@@ -24,7 +24,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the EdRecord.
+     * Returns EdRecord.
      *
      * @see seedu.edrecord.model.Model#getEdRecord()
      */

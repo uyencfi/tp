@@ -125,7 +125,7 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the EdRecord data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores EdRecord data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -176,7 +176,7 @@ Step 1. The user launches the application for the first time. The `VersionedEdRe
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the EdRecord. The `delete` command calls `Model#commitEdRecord()`, causing the modified state of the EdRecord after the `delete 5` command executes to be saved in the `edRecordStateList`, and the `currentStatePointer` is shifted to the newly inserted EdRecord state.
+Step 2. The user executes `delete 5` command to delete the 5th person in EdRecord. The `delete` command calls `Model#commitEdRecord()`, causing the modified state of EdRecord after the `delete 5` command executes to be saved in the `edRecordStateList`, and the `currentStatePointer` is shifted to the newly inserted EdRecord state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -184,7 +184,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitEdRecord()`, so the EdRecord state will not be saved into the `edRecordStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitEdRecord()`, so EdRecord state will not be saved into the `edRecordStateList`.
 
 </div>
 

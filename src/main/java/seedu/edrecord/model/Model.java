@@ -49,7 +49,7 @@ public interface Model {
      */
     void setEdRecord(ReadOnlyEdRecord edRecord);
 
-    /** Returns the EdRecord */
+    /** Returns EdRecord */
     ReadOnlyEdRecord getEdRecord();
 
     /**
