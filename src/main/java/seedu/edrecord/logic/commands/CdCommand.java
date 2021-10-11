@@ -3,8 +3,8 @@ package seedu.edrecord.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.edrecord.commons.core.Messages;
-import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.Model;
+import seedu.edrecord.model.person.PartOfModulePredicate;
 
 // TODO: Consider updating UI to show the current selected module
 // TODO: Update UG/DG
