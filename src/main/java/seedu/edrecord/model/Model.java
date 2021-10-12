@@ -12,7 +12,9 @@ import seedu.edrecord.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -92,7 +94,9 @@ public interface Model {
      */
     void setModuleSystem(ReadOnlyModuleSystem moduleSystem);
 
-    /** Returns the ModuleSystem */
+    /**
+     * Returns the ModuleSystem
+     */
     ReadOnlyModuleSystem getModuleSystem();
 
     /**
@@ -112,7 +116,9 @@ public interface Model {
      */
     void addModule(Module mod);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**

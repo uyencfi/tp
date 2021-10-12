@@ -115,7 +115,6 @@ public class MainApp extends Application {
         }
 
 
-
         return new ModelManager(initialData, initialModuleData, userPrefs);
     }
 

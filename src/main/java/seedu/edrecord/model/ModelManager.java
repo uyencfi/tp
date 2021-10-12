@@ -30,7 +30,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given edRecord, moduleSystem and userPrefs.
      */
-    public ModelManager(ReadOnlyEdRecord edRecord, ReadOnlyModuleSystem moduleSystem, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEdRecord edRecord, ReadOnlyModuleSystem moduleSystem,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(edRecord, moduleSystem, userPrefs);
 

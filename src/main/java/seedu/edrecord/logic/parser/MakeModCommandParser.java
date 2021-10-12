@@ -12,6 +12,7 @@ public class MakeModCommandParser implements Parser<MakeModuleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code MakeModuleCommand}
      * and returns a {@code MakeModuleCommand} object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public MakeModuleCommand parse(String args) throws ParseException {

@@ -17,7 +17,7 @@ import seedu.edrecord.model.module.exceptions.ModuleNotFoundException;
  * modules uses Module#isSameModule(Module) for equality so as to ensure that the module being added or updated is
  * unique in terms of identity in the UniqueModuleList. However, the removal of a module uses Module#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Module#isSameModule(Module)
@@ -79,7 +79,7 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
-        if (!modulesAreUnique(modules)) {
+        if (!areModulesUnique(modules)) {
             throw new DuplicateModuleException();
         }
 
@@ -102,7 +102,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueModuleList // instanceof handles nulls
-                        && internalList.equals(((UniqueModuleList) other).internalList));
+                && internalList.equals(((UniqueModuleList) other).internalList));
     }
 
     @Override
@@ -113,7 +113,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns true if {@code modules} contains only unique modules.
      */
-    private boolean modulesAreUnique(List<Module> modules) {
+    private boolean areModulesUnique(List<Module> modules) {
         for (int i = 0; i < modules.size() - 1; i++) {
             for (int j = i + 1; j < modules.size(); j++) {
                 if (modules.get(i).isSameModule(modules.get(j))) {

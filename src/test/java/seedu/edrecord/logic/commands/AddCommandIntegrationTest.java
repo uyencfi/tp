@@ -29,6 +29,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
+
         Model expectedModel = new ModelManager(model.getEdRecord(), model.getModuleSystem(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
