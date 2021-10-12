@@ -3,6 +3,7 @@ package seedu.edrecord.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.edrecord.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+        setTypicalModuleSystem();
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
     }

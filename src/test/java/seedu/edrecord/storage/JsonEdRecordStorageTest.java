@@ -3,6 +3,7 @@ package seedu.edrecord.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.ALICE;
 import static seedu.edrecord.testutil.TypicalPersons.HOON;
 import static seedu.edrecord.testutil.TypicalPersons.IDA;
@@ -65,6 +66,7 @@ public class JsonEdRecordStorageTest {
         Path filePath = testFolder.resolve("TempEdRecord.json");
         EdRecord original = getTypicalEdRecord();
         JsonEdRecordStorage jsonEdRecordStorage = new JsonEdRecordStorage(filePath);
+        setTypicalModuleSystem();
 
         // Save in new file and read back
         jsonEdRecordStorage.saveEdRecord(original, filePath);

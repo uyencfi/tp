@@ -2,6 +2,7 @@ package seedu.edrecord.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,6 +23,7 @@ public class JsonSerializableEdRecordTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
+        setTypicalModuleSystem();
         JsonSerializableEdRecord dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableEdRecord.class).get();
         EdRecord edRecordFromFile = dataFromFile.toModelType();
@@ -38,6 +40,7 @@ public class JsonSerializableEdRecordTest {
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+        setTypicalModuleSystem();
         JsonSerializableEdRecord dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableEdRecord.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableEdRecord.MESSAGE_DUPLICATE_PERSON,
