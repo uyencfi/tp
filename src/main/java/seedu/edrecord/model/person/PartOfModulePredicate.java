@@ -1,7 +1,5 @@
 package seedu.edrecord.model.person;
 
-// TODO: Use a `Module` class instead of String
-
 import java.util.function.Predicate;
 
 import seedu.edrecord.model.module.Module;
@@ -16,21 +14,25 @@ public class PartOfModulePredicate implements Predicate<Person> {
         }
     };
 
-    private final Module moduleCode;
+    private final Module module;
 
     public PartOfModulePredicate(String moduleCode) {
-        this.moduleCode = new Module(moduleCode);
+        this.module = new Module(moduleCode);
+    }
+
+    public Module getModule() {
+        return module;
     }
 
     @Override
     public boolean test(Person person) {
-        return person.getModule().isSameModule(moduleCode);
+        return person.getModule().isSameModule(module);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PartOfModulePredicate // instanceof handles nulls
-                && moduleCode.equals(((PartOfModulePredicate) other).moduleCode)); // state check
+                && module.equals(((PartOfModulePredicate) other).module)); // state check
     }
 }
