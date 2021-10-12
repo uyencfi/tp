@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edrecord.commons.exceptions.IllegalValueException;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -110,7 +110,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidModule_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_MODULE, VALID_TAGS);
+                INVALID_MODULE, VALID_TAGS);
         String expectedMessage = Module.MESSAGE_DOES_NOT_EXIST;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

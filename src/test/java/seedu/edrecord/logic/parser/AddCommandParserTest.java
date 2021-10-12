@@ -38,9 +38,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edrecord.logic.commands.AddCommand;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
@@ -151,11 +151,11 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                        + INVALID_MODULE_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_MODULE_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + ADDRESS_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

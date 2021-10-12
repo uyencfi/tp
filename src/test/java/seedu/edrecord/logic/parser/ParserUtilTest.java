@@ -14,9 +14,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.edrecord.logic.parser.exceptions.ParseException;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
 
