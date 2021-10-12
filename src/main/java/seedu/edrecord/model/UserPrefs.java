@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path edRecordFilePath = Paths.get("data" , "edrecord.json");
+    private Path moduleSystemFilePath = Paths.get("data" , "modulesystem.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setEdRecordFilePath(newUserPrefs.getEdRecordFilePath());
+        setModuleSystemFilePath(newUserPrefs.getModuleSystemFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.edRecordFilePath = edRecordFilePath;
     }
 
+    public Path getModuleSystemFilePath() {
+        return moduleSystemFilePath;
+    }
+
+    public void setModuleSystemFilePath(Path moduleSystemFilePath) {
+        requireNonNull(moduleSystemFilePath);
+        this.moduleSystemFilePath = moduleSystemFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,19 +79,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && edRecordFilePath.equals(o.edRecordFilePath);
+                && edRecordFilePath.equals(o.edRecordFilePath)
+                && moduleSystemFilePath.equals(o.moduleSystemFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, edRecordFilePath);
+        return Objects.hash(guiSettings, edRecordFilePath, moduleSystemFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + edRecordFilePath);
+        sb.append("\nLocal ed record data file location : " + edRecordFilePath);
+        sb.append("\nLocal module system data file location : " + moduleSystemFilePath);
         return sb.toString();
     }
 

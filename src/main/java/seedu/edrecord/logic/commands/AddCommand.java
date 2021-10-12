@@ -3,6 +3,7 @@ package seedu.edrecord.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,12 +25,14 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_MODULE + "MODULE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_MODULE + "CS2103 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
@@ -63,5 +66,10 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
+    }
+
+    @Override
+    public String toString() {
+        return toAdd.toString();
     }
 }

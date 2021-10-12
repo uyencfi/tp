@@ -5,13 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.edrecord.commons.core.GuiSettings;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -76,7 +79,46 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns the user prefs' module system file path.
+     */
+    Path getModuleSystemFilePath();
+
+    /**
+     * Sets the user prefs' module system file path.
+     */
+    void setModuleSystemFilePath(Path moduleSystemFilePath);
+
+    /**
+     * Replaces module system data with the data in {@code moduleSystem}.
+     */
+    void setModuleSystem(ReadOnlyModuleSystem moduleSystem);
+
+    /**
+     * Returns the ModuleSystem
+     */
+    ReadOnlyModuleSystem getModuleSystem();
+
+    /**
+     * Returns true if a module with the same code as {@code mod} exists in the module system.
+     */
+    boolean hasModule(Module mod);
+
+    /**
+     * Deletes the given module.
+     * The module must exist in the module system.
+     */
+    void deleteModule(Module target);
+
+    /**
+     * Adds the given module.
+     * {@code person} must not already exist in the address book.
+     */
+    void addModule(Module mod);
+
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**

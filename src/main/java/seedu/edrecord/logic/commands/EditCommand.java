@@ -3,6 +3,7 @@ package seedu.edrecord.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_TAG;
@@ -19,6 +20,7 @@ import seedu.edrecord.commons.core.index.Index;
 import seedu.edrecord.commons.util.CollectionUtil;
 import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.Model;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
 import seedu.edrecord.model.person.Name;
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -54,7 +57,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -97,9 +100,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Module updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedModule, updatedTags);
     }
 
     @Override
@@ -129,9 +133,11 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Module module;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -142,6 +148,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setModule(toCopy.module);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, module, tags);
         }
 
         public void setName(Name name) {
@@ -182,6 +189,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setModule(Module mod) {
+            this.module = mod;
+        }
+
+        public Optional<Module> getModule() {
+            return Optional.ofNullable(module);
         }
 
         /**
@@ -220,6 +235,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getModule().equals(e.getModule())
                     && getTags().equals(e.getTags());
         }
     }

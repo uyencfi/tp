@@ -6,6 +6,7 @@ import static seedu.edrecord.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.edrecord.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.edrecord.testutil.Assert.assertThrows;
 import static seedu.edrecord.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +36,7 @@ public class EdRecordParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
+        setTypicalModuleSystem();
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
@@ -55,6 +57,7 @@ public class EdRecordParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
+        setTypicalModuleSystem();
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "

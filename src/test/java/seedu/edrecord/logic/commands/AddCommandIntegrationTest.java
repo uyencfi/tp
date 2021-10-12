@@ -2,6 +2,7 @@ package seedu.edrecord.logic.commands;
 
 import static seedu.edrecord.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.edrecord.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.edrecord.testutil.TypicalModules.getTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.getTypicalEdRecord;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,14 +23,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalEdRecord(), new UserPrefs());
+        model = new ModelManager(getTypicalEdRecord(), getTypicalModuleSystem(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getEdRecord(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getEdRecord(), model.getModuleSystem(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,

@@ -2,6 +2,7 @@ package seedu.edrecord.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.getTypicalEdRecord;
 
 import java.nio.file.Path;
@@ -26,7 +27,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonEdRecordStorage edRecordStorage = new JsonEdRecordStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(edRecordStorage, userPrefsStorage);
+        JsonModuleSystemStorage moduleSystemStorage = new JsonModuleSystemStorage(getTempFilePath("ms"));
+        storageManager = new StorageManager(edRecordStorage, moduleSystemStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -55,6 +57,7 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonEdRecordStorageTest} class.
          */
         EdRecord original = getTypicalEdRecord();
+        setTypicalModuleSystem();
         storageManager.saveEdRecord(original);
         ReadOnlyEdRecord retrieved = storageManager.readEdRecord().get();
         assertEquals(original, new EdRecord(retrieved));

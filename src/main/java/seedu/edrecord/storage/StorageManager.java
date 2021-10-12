@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.edrecord.commons.core.LogsCenter;
 import seedu.edrecord.commons.exceptions.DataConversionException;
 import seedu.edrecord.model.ReadOnlyEdRecord;
+import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.UserPrefs;
 
@@ -18,14 +19,18 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private EdRecordStorage edRecordStorage;
+    private ModuleSystemStorage moduleSystemStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code EdRecordStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code EdRecordStorage}, {@code ModuleSystemStorage}
+     * and {@code UserPrefStorage}.
      */
-    public StorageManager(EdRecordStorage edRecordStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(EdRecordStorage edRecordStorage, ModuleSystemStorage moduleSystemStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.edRecordStorage = edRecordStorage;
+        this.moduleSystemStorage = moduleSystemStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -76,4 +81,32 @@ public class StorageManager implements Storage {
         edRecordStorage.saveEdRecord(edRecord, filePath);
     }
 
+    // ================ ModuleSystem methods ==============================
+
+    @Override
+    public Path getModuleSystemFilePath() {
+        return moduleSystemStorage.getModuleSystemFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyModuleSystem> readModuleSystem() throws DataConversionException, IOException {
+        return readModuleSystem(moduleSystemStorage.getModuleSystemFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyModuleSystem> readModuleSystem(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return moduleSystemStorage.readModuleSystem(filePath);
+    }
+
+    @Override
+    public void saveModuleSystem(ReadOnlyModuleSystem moduleSystem) throws IOException {
+        saveModuleSystem(moduleSystem, moduleSystemStorage.getModuleSystemFilePath());
+    }
+
+    @Override
+    public void saveModuleSystem(ReadOnlyModuleSystem moduleSystem, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        moduleSystemStorage.saveModuleSystem(moduleSystem, filePath);
+    }
 }

@@ -6,13 +6,14 @@ import java.util.Optional;
 
 import seedu.edrecord.commons.exceptions.DataConversionException;
 import seedu.edrecord.model.ReadOnlyEdRecord;
+import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends EdRecordStorage, UserPrefsStorage {
+public interface Storage extends EdRecordStorage, ModuleSystemStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,14 @@ public interface Storage extends EdRecordStorage, UserPrefsStorage {
 
     @Override
     void saveEdRecord(ReadOnlyEdRecord edRecord) throws IOException;
+
+    @Override
+    Path getModuleSystemFilePath();
+
+    @Override
+    Optional<ReadOnlyModuleSystem> readModuleSystem() throws DataConversionException, IOException;
+
+    @Override
+    void saveModuleSystem(ReadOnlyModuleSystem moduleSystem) throws IOException;
 
 }

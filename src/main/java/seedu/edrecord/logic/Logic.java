@@ -26,7 +26,11 @@ public interface Logic {
     /**
      * Returns EdRecord.
      *
+<<<<<<< HEAD:src/main/java/seedu/edrecord/logic/Logic.java
      * @see seedu.edrecord.model.Model#getEdRecord()
+=======
+     * @see seedu.edrecord.model.Model#getAddressBook()
+>>>>>>> 0dd5fee0d6b2321f7fa22797eaa524d349a0f607:src/main/java/seedu/address/logic/Logic.java
      */
     ReadOnlyEdRecord getEdRecord();
 
