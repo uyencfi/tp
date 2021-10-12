@@ -22,6 +22,7 @@ import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.testutil.PersonBuilder;
 
@@ -186,7 +187,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setModuleFilter(Predicate<Person> predicate) {
+        public void setModuleFilter(PartOfModulePredicate predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Module getSelectedModule() {
             throw new AssertionError("This method should not be called.");
         }
     }
