@@ -151,12 +151,11 @@ public class ParserUtil {
     public static Module parseMakeModule(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.trim();
+
         if (!Module.isValidNewModule(trimmedModuleCode)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
-        } else if (Module.MODULE_SYSTEM.hasModule(moduleCode)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MakeModuleCommand.MESSAGE_DUPLICATE_MODULE));
         }
+
         return new Module(trimmedModuleCode);
     }
 }
