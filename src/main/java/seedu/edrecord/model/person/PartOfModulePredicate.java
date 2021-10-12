@@ -4,7 +4,7 @@ package seedu.edrecord.model.person;
 
 import java.util.function.Predicate;
 
-import seedu.edrecord.model.tag.Tag;
+import seedu.edrecord.model.module.Module;
 
 /**
  * Tests if a {@code Person} is part of a module.
@@ -16,21 +16,21 @@ public class PartOfModulePredicate implements Predicate<Person> {
         }
     };
 
-    private final Tag moduleTag;
+    private final Module moduleCode;
 
-    public PartOfModulePredicate(String module) {
-        this.moduleTag = new Tag(module);
+    public PartOfModulePredicate(String moduleCode) {
+        this.moduleCode = new Module(moduleCode);
     }
 
     @Override
     public boolean test(Person person) {
-        return person.getTags().contains(moduleTag);
+        return person.getModule().isSameModule(moduleCode);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PartOfModulePredicate // instanceof handles nulls
-                && moduleTag.equals(((PartOfModulePredicate) other).moduleTag)); // state check
+                && moduleCode.equals(((PartOfModulePredicate) other).moduleCode)); // state check
     }
 }
