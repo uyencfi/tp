@@ -16,7 +16,7 @@ import seedu.edrecord.commons.exceptions.IllegalValueException;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.person.Name;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Phone;
 
 public class JsonAdaptedPersonTest {

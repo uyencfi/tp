@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.person.Name;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
