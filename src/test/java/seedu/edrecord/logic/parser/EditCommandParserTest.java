@@ -39,7 +39,6 @@ import seedu.edrecord.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Email;
 import seedu.edrecord.model.person.Info;
-import seedu.edrecord.model.person.Name;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
 import seedu.edrecord.testutil.EditPersonDescriptorBuilder;
