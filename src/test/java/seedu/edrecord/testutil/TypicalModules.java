@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.edrecord.model.ModuleSystem;
+import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.module.Module;
 
 /**

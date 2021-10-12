@@ -2,7 +2,7 @@ package seedu.edrecord.model.module;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.edrecord.model.ModuleSystem;
+import seedu.edrecord.model.group.GroupSystem;
 
 /**
  * Represents a student's module in EdRecord.

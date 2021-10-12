@@ -23,7 +23,7 @@ import seedu.edrecord.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ModelManager;
-import seedu.edrecord.model.ModuleSystem;
+import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.testutil.EditPersonDescriptorBuilder;

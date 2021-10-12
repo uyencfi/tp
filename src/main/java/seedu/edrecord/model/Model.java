@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.Person;
 
 /**

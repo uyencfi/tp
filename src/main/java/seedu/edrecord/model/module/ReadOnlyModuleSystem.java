@@ -1,4 +1,4 @@
-package seedu.edrecord.model;
+package seedu.edrecord.model.module;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface ReadOnlyModuleSystem {
     /**
      * Returns an unmodifiable view of the modules list.
      * This list will not contain any duplicate modules.
-     * @return
+     * @return the list of modules.
      */
     List<Module> getModuleList();
 

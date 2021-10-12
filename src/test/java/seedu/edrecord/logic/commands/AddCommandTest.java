@@ -19,7 +19,7 @@ import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ReadOnlyEdRecord;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Person;

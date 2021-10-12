@@ -13,6 +13,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.commons.core.LogsCenter;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.Person;
 
 /**

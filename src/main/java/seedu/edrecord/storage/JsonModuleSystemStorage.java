@@ -12,7 +12,7 @@ import seedu.edrecord.commons.exceptions.DataConversionException;
 import seedu.edrecord.commons.exceptions.IllegalValueException;
 import seedu.edrecord.commons.util.FileUtil;
 import seedu.edrecord.commons.util.JsonUtil;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 
 /**
  * A class to access Module data stored as a json file on the hard disk.

@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.edrecord.commons.exceptions.DataConversionException;
-import seedu.edrecord.model.ModuleSystem;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 
 /**
  * Represents a storage for {@link ModuleSystem}.

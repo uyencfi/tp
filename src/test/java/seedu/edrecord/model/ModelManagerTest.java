@@ -16,6 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.edrecord.commons.core.GuiSettings;
+import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.person.NameContainsKeywordsPredicate;
 import seedu.edrecord.testutil.EdRecordBuilder;
 
