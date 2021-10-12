@@ -7,9 +7,8 @@ import java.util.stream.Stream;
 import seedu.edrecord.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
-import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.person.Person;
+import seedu.edrecord.model.person.Info;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
 
@@ -36,7 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setInfo(person.getInfo());
         descriptor.setModule(person.getModule());
         descriptor.setTags(person.getTags());
     }
@@ -66,10 +65,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Info} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withInfo(String info) {
+        descriptor.setInfo(new Info(info));
         return this;
     }
 
