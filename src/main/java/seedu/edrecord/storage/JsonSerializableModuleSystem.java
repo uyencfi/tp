@@ -19,8 +19,6 @@ import seedu.edrecord.model.module.Module;
 @JsonRootName(value = "modulesystem")
 class JsonSerializableModuleSystem {
 
-    public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
-
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
@@ -49,9 +47,6 @@ class JsonSerializableModuleSystem {
         ModuleSystem moduleSystem = Module.MODULE_SYSTEM;
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module mod = jsonAdaptedModule.toModelType();
-            if (moduleSystem.hasModule(mod)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
-            }
             moduleSystem.addModule(mod);
         }
         return moduleSystem;
