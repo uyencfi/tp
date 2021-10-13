@@ -10,7 +10,6 @@ import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.edrecord.logic.commands.exceptions.CommandException;
-import seedu.edrecord.logic.parser.exceptions.ParseException;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Person;

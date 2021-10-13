@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
+import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 
 /**
@@ -132,7 +133,12 @@ public interface Model {
      * Updates the module filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void setModuleFilter(Predicate<Person> predicate);
+    void setModuleFilter(PartOfModulePredicate predicate);
+
+    /**
+     * Returns the current selected module.
+     */
+    Module getSelectedModule();
 
     /**
      * Updates the search filter of the filtered person list to filter by the given {@code predicate}.

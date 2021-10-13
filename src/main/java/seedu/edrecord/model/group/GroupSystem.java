@@ -5,9 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.edrecord.model.module.Module;
-import seedu.edrecord.model.module.ReadOnlyModuleSystem;
-import seedu.edrecord.model.module.UniqueModuleList;
 
 /**
  * Wraps all data at the group-system level

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.edrecord.commons.exceptions.IllegalValueException;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
-import seedu.edrecord.model.module.Module;
 
 /**
  * An Immutable ModuleSystem that is serializable to JSON format.

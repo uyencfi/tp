@@ -1,10 +1,8 @@
 package seedu.edrecord.model.person;
 
-// TODO: Use a `Module` class instead of String
-
 import java.util.function.Predicate;
 
-import seedu.edrecord.model.tag.Tag;
+import seedu.edrecord.model.module.Module;
 
 /**
  * Tests if a {@code Person} is part of a module.
@@ -16,21 +14,25 @@ public class PartOfModulePredicate implements Predicate<Person> {
         }
     };
 
-    private final Tag moduleTag;
+    private final Module module;
 
-    public PartOfModulePredicate(String module) {
-        this.moduleTag = new Tag(module);
+    public PartOfModulePredicate(String moduleCode) {
+        this.module = new Module(moduleCode);
+    }
+
+    public Module getModule() {
+        return module;
     }
 
     @Override
     public boolean test(Person person) {
-        return person.getTags().contains(moduleTag);
+        return person.getModule().isSameModule(module);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PartOfModulePredicate // instanceof handles nulls
-                && moduleTag.equals(((PartOfModulePredicate) other).moduleTag)); // state check
+                && module.equals(((PartOfModulePredicate) other).module)); // state check
     }
 }

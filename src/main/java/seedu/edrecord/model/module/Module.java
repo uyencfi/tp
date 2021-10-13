@@ -81,6 +81,9 @@ public class Module {
         this.groupSystem.resetData(groupSystem);
     }
 
+    /**
+     * Returns true if groupSystem has a group with the same group code.
+     */
     public boolean hasGroup(Group grp) {
         requireNonNull(grp);
         return groupSystem.hasGroup(grp);

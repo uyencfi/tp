@@ -2,6 +2,7 @@ package seedu.edrecord.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.edrecord.model.person.PartOfModulePredicate.PREDICATE_SHOW_ALL_MODULES;
 
 import java.nio.file.Path;
 import java.util.Optional;
@@ -12,10 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.commons.core.LogsCenter;
-import seedu.edrecord.model.group.ReadOnlyGroupSystem;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
+import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 
 /**
@@ -28,7 +29,8 @@ public class ModelManager implements Model {
     private final ModuleSystem moduleSystem;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private Predicate<Person> selectedModulePredicate;
+    private PartOfModulePredicate selectedModulePredicate;
+    private Module selectedModule;
 
     /**
      * Initializes a ModelManager with the given edRecord, moduleSystem and userPrefs.
@@ -178,17 +180,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModuleFilter(Predicate<Person> modulePredicate) {
+    public void setModuleFilter(PartOfModulePredicate modulePredicate) {
         requireNonNull(modulePredicate);
         this.selectedModulePredicate = modulePredicate;
+        this.selectedModule = modulePredicate.getModule();
         filteredPersons.setPredicate(modulePredicate);
+    }
+
+    @Override
+    public Module getSelectedModule() {
+        return this.selectedModule;
     }
 
     @Override
     public void setSearchFilter(Predicate<Person> searchPredicate) {
         requireNonNull(searchPredicate);
         Predicate<Person> modulePredicate =
-                Optional.ofNullable(this.selectedModulePredicate).orElse(PREDICATE_SHOW_ALL_PERSONS);
+                Optional.ofNullable(this.selectedModulePredicate).orElse(PREDICATE_SHOW_ALL_MODULES);
         filteredPersons.setPredicate(modulePredicate.and(searchPredicate));
     }
 

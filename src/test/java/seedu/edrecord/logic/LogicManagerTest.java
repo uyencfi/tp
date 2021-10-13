@@ -30,9 +30,9 @@ import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.storage.JsonEdRecordStorage;
-import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 import seedu.edrecord.storage.JsonUserPrefsStorage;
 import seedu.edrecord.storage.StorageManager;
+import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 import seedu.edrecord.testutil.PersonBuilder;
 
 public class LogicManagerTest {

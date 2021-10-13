@@ -5,12 +5,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.edrecord.model.EdRecord;
+import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.group.GroupSystem;
-import seedu.edrecord.model.module.ModuleSystem;
-import seedu.edrecord.model.ReadOnlyEdRecord;
-import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
 import seedu.edrecord.model.person.Name;
@@ -47,8 +47,8 @@ public class SampleDataUtil {
 
     public static Group[] getSampleGroups() {
         return new Group[] {
-                new Group("T03"),
-                new Group("T07")
+            new Group("T03"),
+            new Group("T07")
         };
     }
 
