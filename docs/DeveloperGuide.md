@@ -506,65 +506,93 @@ Use case ends.
 
 **Extensions**
 
-- 1a. User does not provide required fields due date, maximum marks and assignment weightage
+- 1a. User has not navigated to a module.
   
   - 1a1. EdRecord shows an error message.
+    
+    Use case ends.
+
+- 1b. User does not provide required fields due date, maximum marks and assignment weightage
+  
+  - 1b1. EdRecord shows an error message.
+
+    Use case ends.
+
+**Use Case: UC10 - List all assignments**
+
+**MSS**
+
+1. User requests to list all assignments.
+2. EdRecord returns a list of all assignments in the current module.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. User has not navigated to a module.
+  
+  - 1a1. EdRecord shows an error message.
+    
+    Use case ends.
+
+- 1b. The assignment list is empty.
+
+    - 1b1. EdRecord shows a message informing user that the student list is empty.
 
       Use case ends.
-    
-**Use case: UC10 - Edit assignment details**
+
+
+**Use case: UC11 - Edit assignment details**
 
 **MSS**
 
-1.  User requests to list assignments.
-2.  EdRecord shows a list of assignments in the current module.
-3.  User requests to edit an assignment in the list and provides fields to be edited.
-4.  EdRecord edits the assignment details accordingly.
+1.  User requests to <u>list all assignments (UC10)</u>.
+2.  User requests to edit an assignment in the list and provides fields to be edited.
+3.  EdRecord edits the assignment details accordingly.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given index is invalid.
 
-  - 3a1. EdRecord shows an error message.
+  - 2a1. EdRecord shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3b. User does not specify any valid fields to edit.
+- 2b. User does not specify any valid fields to edit.
 
-  - 3b1. EdRecord shows an error message.
+  - 2b1. EdRecord shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-**Use case: UC11 - Delete an assignment**
+**Use case: UC12 - Delete an assignment**
 
 **MSS**
 
-1.  User requests to list assignments.
-2.  EdRecord shows a list of assignments in the current module.
-3.  User requests to delete an assignment in the list.
-4.  EdRecord deletes the assignment.
+1.  User requests to <u>list all assignments (UC10)</u>.
+2.  User requests to delete an assignment in the list.
+3.  EdRecord deletes the assignment.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given index is invalid.
 
-  - 3a1. EdRecord shows an error message.
+  - 2a1. EdRecord shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: UC12 - Add custom command aliases**
+**Use case: UC13 - Add custom command aliases**
 
 **MSS**
 
@@ -574,9 +602,15 @@ Use case ends.
 
 **Extensions**
 
-- 1a. The alias is already in use.
+- 1a. The command does not exist.
 
   - 1a1. EdRecord shows an error message.
+    
+    Use case ends.
+    
+- 1b. The alias is already in use.
+
+  - 1b1. EdRecord shows an error message.
 
     Use case ends.
 
