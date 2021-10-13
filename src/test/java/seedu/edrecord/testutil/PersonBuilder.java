@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.person.Name;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
@@ -65,7 +65,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

@@ -21,6 +21,7 @@ import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
+import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
@@ -193,6 +194,21 @@ public class AddCommandTest {
 
         @Override
         public Module getSelectedModule() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSelectedModule() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAssignmentInCurrentModule(Assignment assignment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAssignment(Assignment assignment) {
             throw new AssertionError("This method should not be called.");
         }
     }

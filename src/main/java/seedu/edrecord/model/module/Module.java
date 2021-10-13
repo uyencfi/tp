@@ -3,6 +3,8 @@ package seedu.edrecord.model.module;
 import static java.util.Objects.requireNonNull;
 
 import seedu.edrecord.model.ModuleSystem;
+import seedu.edrecord.model.assignment.Assignment;
+import seedu.edrecord.model.assignment.UniqueAssignmentList;
 
 /**
  * Represents a student's module in EdRecord.
@@ -22,15 +24,17 @@ public class Module {
     public static final ModuleSystem MODULE_SYSTEM = new ModuleSystem();
 
     public final String code;
+    private final UniqueAssignmentList assignmentList;
 
     /**
-     * Constructs a {@code Module}.
+     * Constructs a {@code Module} containing an empty list of assignments.
      *
      * @param code A valid module code.
      */
     public Module(String code) {
         requireNonNull(code);
         this.code = code;
+        this.assignmentList = new UniqueAssignmentList();
     }
 
     public String getCode() {
@@ -45,10 +49,25 @@ public class Module {
     }
 
     /**
-     * Returns true if module given has the same module code.
+     * Returns true if the module given has the same module code.
      */
     public boolean isSameModule(Module toCheck) {
         return this.equals(toCheck);
+    }
+
+    /**
+     * Returns true if the module contains an assignment that is equivalent to the given assignment.
+     */
+    public boolean hasAssignment(Assignment a) {
+        return assignmentList.contains(a);
+    }
+
+    /**
+     * Adds an assignment to the assignment list under this module.
+     * The assignment to be added must not already exist in the assignment list.
+     */
+    public void addAssignment(Assignment a) {
+        assignmentList.add(a);
     }
 
     @Override
