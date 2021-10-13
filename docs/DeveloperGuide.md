@@ -10,7 +10,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org).
 
 ---
 
@@ -319,7 +319,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `EdRecord` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC1 - Create a new class in a module**
+**Use case: UC01 - Create a new class in a module**
 
 **MSS**
 
@@ -336,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC2 - Add a student contact**
+**Use case: UC02 - Add a student contact**
 
 **MSS**
 
@@ -353,76 +353,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC3 - Edit a student contact**
+**Use Case: UC03 - List all student contacts**
 
 **MSS**
 
-1.  User requests to list students.
-2.  EdRecord shows a list of students.
-3.  User requests to edit a specific student in the list and provides fields to be edited.
-4.  EdRecord edits the student accordingly.
+1. User requests to list all students.
+2. EdRecord returns a list of all students.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The student list is empty.
+  
+  - 1a1. EdRecord shows a message informing user that the student list is empty. 
+      
+    Use case ends.
+
+**Use case: UC04 - Edit a student contact**
+
+**MSS**
+
+1.  User requests to <u>list all students (UC03)</u>.
+2.  User requests to edit a specific student in the list and provides fields to be edited.
+3.  EdRecord edits the student accordingly.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given index is invalid.
 
-  - 3a1. EdRecord shows an error message.
+  - 2a1. EdRecord shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
+    
+- 2b. User does not specify any valid fields to edit.
 
-- 3b. User does not specify any valid fields to edit.
-
-  - 3b1. EdRecord shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: UC4 - Delete a student contact**
+  - 2b1. EdRecord shows an error message.
+    
+    Use case resumes at step 1.
+      
+**Use case: UC05 - Delete a student contact**
 
 **MSS**
 
-1.  User requests to list students.
-2.  EdRecord shows a list of students.
-3.  User requests to delete a specific student in the list.
-4.  EdRecord deletes the student.
+1.  User requests to <u>list all students (UC03)</u>.
+2.  User requests to delete a specific student in the list.
+3.  EdRecord deletes the student.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given index is invalid.
 
-  - 3a1. EdRecord shows an error message.
+  - 2a1. EdRecord shows an error message.
 
     Use case resumes at step 2.
-
-**Use case: UC5 - Assign a student to their class**
+    
+**Use case: UC06 - Add a student to their class**
 
 **MSS**
 
-1.  User requests to add a student to a class.
+1.  User specifies a student contact and requests to add him/her to a class.
 2.  EdRecord adds the student to the specified class.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. The class does not exist.
+- 1a. The student does not exist.
+  
+  - 1a1. EdRecord shows an error message.
 
-  - 1a1. EdRecord shows an error message prompting user to create the class first.
+    Use case ends.
+      
+- 1b. The class does not exist.
+
+  - 1b1. EdRecord shows an error message prompting user to create the class first.
 
     Use case ends.
 
-**Use case: UC6 - Edit module details**
+**Use case: UC07 - Edit module details**
 
 **MSS**
 
@@ -451,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC7 - Delete a module**
+**Use case: UC08 - Delete a module**
 
 **MSS**
 
@@ -473,101 +494,123 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3a1. EdRecord shows an error message.
 
     Use case resumes at step 2.
-
-**Use case: UC8 - Create an assignment**
+    
+**Use case: UC09 - Create an assignment**
 
 **MSS**
 
 1.  User requests to create a new assignment.
-2.  EdRecord creates the new assignment for the module/class.
+2.  EdRecord creates the new assignment for the current module.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. User does not specify if this assignment a module-wide or class-wide assignment
-
+- 1a. User has not navigated to a module.
+  
   - 1a1. EdRecord shows an error message.
-
+    
     Use case ends.
 
 - 1b. User does not provide required fields due date, maximum marks and assignment weightage
-
+  
   - 1b1. EdRecord shows an error message.
 
     Use case ends.
 
-**Use case: UC9 - Edit assignment details**
+**Use Case: UC10 - List all assignments**
 
 **MSS**
 
-1.  User requests to list assignments in a module/class.
-2.  EdRecord shows a list of assignment.
-3.  User requests to edit a specific assignment in the list and provides fields to be edited.
-4.  EdRecord edits the assignment details accordingly.
+1. User requests to list all assignments.
+2. EdRecord returns a list of all assignments in the current module.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-- 1a. User does not specify which module/class to list the assignments.
-
+- 1a. User has not navigated to a module.
+  
   - 1a1. EdRecord shows an error message.
-
+    
     Use case ends.
 
-- 2a. The list is empty.
+- 1b. The assignment list is empty.
 
-  Use case ends.
+    - 1b1. EdRecord shows a message informing user that the student list is empty.
 
-- 3a. The given index is invalid.
+      Use case ends.
 
-  - 3a1. EdRecord shows an error message.
 
-    Use case resumes at step 2.
-
-- 3b. User does not specify any valid fields to edit.
-
-  - 3b1. EdRecord shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: UC10 - Delete an assignment**
+**Use case: UC11 - Edit assignment details**
 
 **MSS**
 
-1.  User requests to list assignments in a module/class.
-2.  EdRecord shows a list of assignment.
-3.  User requests to delete a specific assignment in the list.
-4.  EdRecord deletes the assignment.
+1.  User requests to <u>list all assignments (UC10)</u>.
+2.  User requests to edit an assignment in the list and provides fields to be edited.
+3.  EdRecord edits the assignment details accordingly.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given index is invalid.
 
-  - 3a1. EdRecord shows an error message.
+  - 2a1. EdRecord shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-**Use case: UC11 - Add custom command aliases**
+- 2b. User does not specify any valid fields to edit.
+
+  - 2b1. EdRecord shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC12 - Delete an assignment**
 
 **MSS**
 
-1.  User requests to an alias for a command.
+1.  User requests to <u>list all assignments (UC10)</u>.
+2.  User requests to delete an assignment in the list.
+3.  EdRecord deletes the assignment.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+  Use case ends.
+
+- 2a. The given index is invalid.
+
+  - 2a1. EdRecord shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC13 - Add custom command aliases**
+
+**MSS**
+
+1.  User requests to add an alias for a command.
 2.  EdRecord adds the alias.
     Use case ends.
 
 **Extensions**
 
-- 1a. The alias is already in use.
+- 1a. The command does not exist.
 
   - 1a1. EdRecord shows an error message.
+    
+    Use case ends.
+    
+- 1b. The alias is already in use.
+
+  - 1b1. EdRecord shows an error message.
 
     Use case ends.
 
