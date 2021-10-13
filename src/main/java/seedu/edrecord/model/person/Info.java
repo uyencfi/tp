@@ -20,7 +20,7 @@ public class Info {
     public final String value;
 
     /**
-     * Constructs a {@code Info}.
+     * Constructs an {@code Info}.
      *
      * @param info A valid info.
      */
