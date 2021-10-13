@@ -63,6 +63,20 @@ public class UniqueModuleList implements Iterable<Module> {
      * Gets the module with {@code code} from the list.
      * The module must exist in the list.
      */
+    public Module getModule(Module mod) {
+        requireNonNull(mod);
+        for (Module m : internalList) {
+            if (m.isSameModule(mod)) {
+                return m;
+            }
+        }
+        throw new ModuleNotFoundException();
+    }
+
+    /**
+     * Gets the module with {@code code} from the list.
+     * The module must exist in the list.
+     */
     public Module getModule(String code) {
         requireNonNull(code);
         for (Module mod : internalList) {

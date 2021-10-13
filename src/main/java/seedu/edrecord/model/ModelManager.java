@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.commons.core.LogsCenter;
+import seedu.edrecord.model.group.ReadOnlyGroupSystem;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
@@ -47,7 +48,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new EdRecord(), new ModuleSystem(), new UserPrefs());
+        this(new EdRecord(), Module.MODULE_SYSTEM, new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -158,6 +159,11 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module mod) {
         moduleSystem.addModule(mod);
+    }
+
+    @Override
+    public Module getModule(Module mod) {
+        return moduleSystem.getModule(mod);
     }
 
     //=========== Filtered Person List Accessors =============================================================

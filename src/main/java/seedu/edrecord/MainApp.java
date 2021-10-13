@@ -18,6 +18,7 @@ import seedu.edrecord.logic.LogicManager;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ModelManager;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
@@ -26,7 +27,7 @@ import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.util.SampleDataUtil;
 import seedu.edrecord.storage.EdRecordStorage;
 import seedu.edrecord.storage.JsonEdRecordStorage;
-import seedu.edrecord.storage.JsonModuleSystemStorage;
+import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 import seedu.edrecord.storage.JsonUserPrefsStorage;
 import seedu.edrecord.storage.ModuleSystemStorage;
 import seedu.edrecord.storage.Storage;
@@ -92,10 +93,10 @@ public class MainApp extends Application {
         } catch (DataConversionException e) {
             logger.warning("Module data file not in the correct format. Will be starting with "
                     + "an empty ModuleSystem");
-            initialModuleData = new ModuleSystem();
+            initialModuleData = Module.MODULE_SYSTEM;
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleSystem");
-            initialModuleData = new ModuleSystem();
+            initialModuleData = Module.MODULE_SYSTEM;
         }
 
         Optional<ReadOnlyEdRecord> edRecordOptional;

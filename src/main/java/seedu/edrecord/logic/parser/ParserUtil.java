@@ -9,8 +9,11 @@ import java.util.Set;
 
 import seedu.edrecord.commons.core.index.Index;
 import seedu.edrecord.commons.util.StringUtil;
+import seedu.edrecord.logic.commands.MakeGroupCommand;
 import seedu.edrecord.logic.commands.MakeModuleCommand;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
+import seedu.edrecord.model.group.Group;
+import seedu.edrecord.model.group.GroupSystem;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
@@ -135,10 +138,8 @@ public class ParserUtil {
     public static Module parseModule(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.trim();
-        if (!Module.MODULE_SYSTEM.hasModule(trimmedModuleCode)) {
-            throw new ParseException(Module.MESSAGE_DOES_NOT_EXIST);
-        }
-        return Module.MODULE_SYSTEM.getModule(moduleCode);
+
+        return new Module(trimmedModuleCode);
     }
 
     /**
@@ -151,12 +152,66 @@ public class ParserUtil {
     public static Module parseMakeModule(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.trim();
+
         if (!Module.isValidNewModule(trimmedModuleCode)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
-        } else if (Module.MODULE_SYSTEM.hasModule(moduleCode)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MakeModuleCommand.MESSAGE_DUPLICATE_MODULE));
         }
-        return new Module(trimmedModuleCode);
+
+        return new Module(trimmedModuleCode, new GroupSystem());
+    }
+
+    /**
+     * Parses a {@code String code} into an {@code Group} for associating to a Group in a module.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code code} is invalid or already exists in module.
+     */
+    public static Group parseGroup(String moduleCode, String groupCode) throws ParseException {
+        requireNonNull(moduleCode);
+        Module mod = Module.MODULE_SYSTEM.getModule(moduleCode);
+
+        requireNonNull(groupCode);
+        String trimmedGroupCode = groupCode.trim();
+
+        if (!mod.getGroupSystem().hasGroup(trimmedGroupCode)) {
+            throw new ParseException(Group.MESSAGE_DOES_NOT_EXIST);
+        }
+
+        return mod.getGroup(trimmedGroupCode);
+    }
+
+    /**
+     * Parses a {@code String code} into an {@code Group} for associating to a Group.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code code} is invalid or already exists.
+     */
+    public static Group parseGroup(String groupCode) throws ParseException {
+        requireNonNull(groupCode);
+        String trimmedGroupCode = groupCode.trim();
+
+        return new Group(trimmedGroupCode);
+    }
+
+    /**
+     * Parses a {@code String groupCode} into an {@code groupCode} for MakeGroupCommand.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @return new Group with given group code.
+     * @throws ParseException if the given {@code groupCode} is invalid or already exists in module with
+     *                        {@code moduleCode}.
+     */
+    public static Group parseMakeGroup(String moduleCode, String groupCode) throws ParseException {
+        requireNonNull(moduleCode);
+        Module mod = Module.MODULE_SYSTEM.getModule(moduleCode);
+
+        requireNonNull(groupCode);
+        String trimmedGroupCode = groupCode.trim();
+
+        if (!Group.isValidNewGroup(trimmedGroupCode)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Group(trimmedGroupCode);
     }
 }

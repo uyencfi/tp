@@ -3,6 +3,7 @@ package seedu.edrecord.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ import seedu.edrecord.commons.core.index.Index;
 import seedu.edrecord.commons.util.CollectionUtil;
 import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.Model;
+import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
@@ -44,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_GROUP + "GROUP] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -57,7 +60,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -84,6 +87,15 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Module mod = editedPerson.getModule();
+        if (!model.hasModule(mod)) {
+            throw new CommandException(Module.MESSAGE_DOES_NOT_EXIST);
+        }
+        Module savedMod = model.getModule(mod);
+        if (!savedMod.hasGroup(editedPerson.getGroup())) {
+            throw new CommandException(Group.MESSAGE_DOES_NOT_EXIST);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.setSearchFilter(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
@@ -101,9 +113,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Module updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
+        Group updatedGroup = editPersonDescriptor.getGroup().orElse(personToEdit.getGroup());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedModule, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedModule, updatedGroup,
+                updatedTags);
     }
 
     @Override
@@ -134,6 +148,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Module module;
+        private Group group;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -149,6 +164,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setModule(toCopy.module);
+            setGroup(toCopy.group);
             setTags(toCopy.tags);
         }
 
@@ -156,7 +172,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, module, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, module, group, tags);
         }
 
         public void setName(Name name) {
@@ -199,6 +215,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(module);
         }
 
+        public void setGroup(Group grp) {
+            this.group = grp;
+        }
+
+        public Optional<Group> getGroup() {
+            return Optional.ofNullable(group);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -236,6 +260,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getModule().equals(e.getModule())
+                    && getGroup().equals(e.getGroup())
                     && getTags().equals(e.getTags());
         }
     }

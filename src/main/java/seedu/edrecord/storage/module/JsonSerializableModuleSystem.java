@@ -1,4 +1,4 @@
-package seedu.edrecord.storage;
+package seedu.edrecord.storage.module;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.edrecord.model.group.GroupSystem;
 
 /**
  * Wraps all data at the module-system level
@@ -69,7 +70,7 @@ public class ModuleSystem implements ReadOnlyModuleSystem {
      */
     public boolean hasModule(String code) {
         requireNonNull(code);
-        return hasModule(new Module(code));
+        return hasModule(new Module(code, new GroupSystem()));
     }
 
     /**
@@ -86,6 +87,14 @@ public class ModuleSystem implements ReadOnlyModuleSystem {
      */
     public void removeModule(Module key) {
         modules.remove(key);
+    }
+
+    /**
+     * Returns module with {@code code} from this {@code ModuleSystem}.
+     * Module with same code as {@code code} must exist in the module system.
+     */
+    public Module getModule(Module mod) {
+        return modules.getModule(mod);
     }
 
     /**

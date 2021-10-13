@@ -2,10 +2,14 @@ package seedu.edrecord.model.module;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
+import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.group.GroupSystem;
+import seedu.edrecord.model.group.ReadOnlyGroupSystem;
 
 /**
- * Represents a student's module in EdRecord.
+ * Represents a module in EdRecord.
  * Guarantees: immutable; is always valid
  */
 public class Module {
@@ -22,6 +26,21 @@ public class Module {
     public static final ModuleSystem MODULE_SYSTEM = new ModuleSystem();
 
     public final String code;
+    public final GroupSystem groupSystem;
+
+    /**
+     * Constructs a {@code Module}.
+     *
+     * @param code A valid module code.
+     * @param groupSystem A valid group system.
+     */
+    public Module(String code, GroupSystem groupSystem) {
+        requireNonNull(code);
+        this.code = code;
+
+        requireNonNull(groupSystem);
+        this.groupSystem = groupSystem;
+    }
 
     /**
      * Constructs a {@code Module}.
@@ -31,10 +50,15 @@ public class Module {
     public Module(String code) {
         requireNonNull(code);
         this.code = code;
+        this.groupSystem = new GroupSystem();
     }
 
     public String getCode() {
         return code;
+    }
+
+    public GroupSystem getGroupSystem() {
+        return groupSystem;
     }
 
     /**
@@ -48,7 +72,30 @@ public class Module {
      * Returns true if module given has the same module code.
      */
     public boolean isSameModule(Module toCheck) {
-        return this.equals(toCheck);
+        return this.code.equals(toCheck.getCode());
+    }
+
+    //=========== GroupSystem ================================================================================
+
+    public void setGroupSystem(ReadOnlyGroupSystem groupSystem) {
+        this.groupSystem.resetData(groupSystem);
+    }
+
+    public boolean hasGroup(Group grp) {
+        requireNonNull(grp);
+        return groupSystem.hasGroup(grp);
+    }
+
+    public void deleteGroup(Group target) {
+        groupSystem.removeGroup(target);
+    }
+
+    public void addGroup(Group toAdd) {
+        groupSystem.addGroup(toAdd);
+    }
+
+    public Group getGroup(String groupCode) {
+        return groupSystem.getGroup(groupCode);
     }
 
     @Override
@@ -60,11 +107,12 @@ public class Module {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && code.equals(((Module) other).code)); // state check
+                && code.equals(((Module) other).code)
+                && groupSystem.equals(((Module) other).groupSystem)); // state check
     }
 
     @Override
     public int hashCode() {
-        return code.hashCode();
+        return Objects.hash(code, groupSystem);
     }
 }

@@ -113,9 +113,15 @@ public interface Model {
 
     /**
      * Adds the given module.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the module system.
      */
     void addModule(Module mod);
+
+    /**
+     * Returns the saved module equivalent of given {@code mod}.
+     * {@code mod} must already exist in the module system.
+     */
+    Module getModule(Module mod);
 
     /**
      * Returns an unmodifiable view of the filtered person list
