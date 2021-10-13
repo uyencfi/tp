@@ -175,10 +175,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String weightage} into a {@code Weightage}.
+     * Parses a {@code String maxScore} into a {@code MaxScore}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code weightage} is invalid.
+     * @throws ParseException if the given {@code maxScore} is invalid.
      */
     public static MaxScore parseMaxScore(String maxScore) throws ParseException {
         requireNonNull(maxScore);

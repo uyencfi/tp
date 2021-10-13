@@ -17,8 +17,8 @@ import seedu.edrecord.model.name.Name;
 public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code MakeModuleCommand}
-     * and returns a {@code MakeModuleCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AddAssignmentCommand}
+     * and returns a {@code AddAssignmentCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
