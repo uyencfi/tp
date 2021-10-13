@@ -368,7 +368,7 @@ Use case ends.
   
   - 1a1. EdRecord shows a message informing user that the student list is empty. 
       
-      Use case ends.
+    Use case ends.
 
 **Use case: UC04 - Edit a student contact**
 
@@ -390,13 +390,13 @@ Use case ends.
 
   - 2a1. EdRecord shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
     
 - 2b. User does not specify any valid fields to edit.
 
   - 2b1. EdRecord shows an error message.
     
-      Use case resumes at step 1.
+    Use case resumes at step 1.
       
 **Use case: UC05 - Delete a student contact**
 
@@ -418,7 +418,7 @@ Use case ends.
 
   - 2a1. EdRecord shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
     
 **Use case: UC06 - Add a student to their class**
 
@@ -435,13 +435,13 @@ Use case ends.
   
   - 1a1. EdRecord shows an error message.
 
-      Use case ends.
+    Use case ends.
       
 - 1b. The class does not exist.
 
   - 1b1. EdRecord shows an error message prompting user to create the class first.
 
-      Use case ends.
+    Use case ends.
 
 **Use case: UC07 - Edit module details**
 
