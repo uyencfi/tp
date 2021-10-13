@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.edrecord.commons.core.GuiSettings;
+import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.PartOfModulePredicate;
@@ -139,6 +140,22 @@ public interface Model {
      * Returns the current selected module.
      */
     Module getSelectedModule();
+
+    /**
+     * Returns true if there is a currently selected module.
+     */
+    boolean hasSelectedModule();
+
+    /**
+     * Returns true if the currently selected module contains the given assignment.
+     */
+    boolean hasAssignmentInCurrentModule(Assignment assignment);
+
+    /**
+     * Adds the given assignment to the currently selected module.
+     * {@code assignment} must not already exist under the currently selected module.
+     */
+    void addAssignment(Assignment assignment);
 
     /**
      * Updates the search filter of the filtered person list to filter by the given {@code predicate}.

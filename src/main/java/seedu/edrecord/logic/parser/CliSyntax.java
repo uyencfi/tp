@@ -13,5 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE = new Prefix("m/");
     public static final Prefix PREFIX_GROUP = new Prefix("c/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_WEIGHTAGE = new Prefix("w/");
+    public static final Prefix PREFIX_MAX_SCORE = new Prefix("s/");
 
 }

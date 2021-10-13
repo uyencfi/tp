@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.tag.Tag;
 
 /**

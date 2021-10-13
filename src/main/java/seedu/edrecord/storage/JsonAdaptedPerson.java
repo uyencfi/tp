@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.edrecord.commons.exceptions.IllegalValueException;
 import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
-import seedu.edrecord.model.person.Name;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
@@ -57,7 +57,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+        name = source.getName().name;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;

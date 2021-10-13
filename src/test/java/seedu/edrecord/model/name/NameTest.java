@@ -1,4 +1,4 @@
-package seedu.edrecord.model.person;
+package seedu.edrecord.model.name;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

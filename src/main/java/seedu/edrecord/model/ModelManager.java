@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.commons.core.LogsCenter;
+import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
@@ -47,6 +48,7 @@ public class ModelManager implements Model {
         this.moduleSystem = new ModuleSystem(moduleSystem);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.edRecord.getPersonList());
+        selectedModule = null;
     }
 
     public ModelManager() {
@@ -188,16 +190,34 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Module getSelectedModule() {
-        return this.selectedModule;
-    }
-
-    @Override
     public void setSearchFilter(Predicate<Person> searchPredicate) {
         requireNonNull(searchPredicate);
         Predicate<Person> modulePredicate =
                 Optional.ofNullable(this.selectedModulePredicate).orElse(PREDICATE_SHOW_ALL_MODULES);
         filteredPersons.setPredicate(modulePredicate.and(searchPredicate));
+    }
+
+    //=========== Current Module =============================================================================
+
+    @Override
+    public Module getSelectedModule() {
+        return this.selectedModule;
+    }
+
+    @Override
+    public boolean hasSelectedModule() {
+        return selectedModule != null;
+    }
+
+    @Override
+    public boolean hasAssignmentInCurrentModule(Assignment assignment) {
+        return hasSelectedModule() && selectedModule.hasAssignment(assignment);
+    }
+
+    @Override
+    public void addAssignment(Assignment assignment) {
+        selectedModule.addAssignment(assignment);
+        setSearchFilter(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override

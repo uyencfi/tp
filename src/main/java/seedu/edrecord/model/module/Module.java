@@ -7,6 +7,8 @@ import java.util.Objects;
 import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.group.GroupSystem;
 import seedu.edrecord.model.group.ReadOnlyGroupSystem;
+import seedu.edrecord.model.assignment.Assignment;
+import seedu.edrecord.model.assignment.UniqueAssignmentList;
 
 /**
  * Represents a module in EdRecord.
@@ -27,6 +29,7 @@ public class Module {
 
     public final String code;
     public final GroupSystem groupSystem;
+    private final UniqueAssignmentList assignmentList;
 
     /**
      * Constructs a {@code Module}.
@@ -40,10 +43,11 @@ public class Module {
 
         requireNonNull(groupSystem);
         this.groupSystem = groupSystem;
+        this.assignmentList = new UniqueAssignmentList();
     }
 
     /**
-     * Constructs a {@code Module}.
+     * Constructs a {@code Module} containing an empty list of assignments.
      *
      * @param code A valid module code.
      */
@@ -51,6 +55,7 @@ public class Module {
         requireNonNull(code);
         this.code = code;
         this.groupSystem = new GroupSystem();
+        this.assignmentList = new UniqueAssignmentList();
     }
 
     public String getCode() {
@@ -69,7 +74,7 @@ public class Module {
     }
 
     /**
-     * Returns true if module given has the same module code.
+     * Returns true if the module given has the same module code.
      */
     public boolean isSameModule(Module toCheck) {
         return this.code.equals(toCheck.getCode());
@@ -99,6 +104,21 @@ public class Module {
 
     public Group getGroup(String groupCode) {
         return groupSystem.getGroup(groupCode);
+    }
+
+    /**
+     * Returns true if the module contains an assignment that is equivalent to the given assignment.
+     */
+    public boolean hasAssignment(Assignment a) {
+        return assignmentList.contains(a);
+    }
+
+    /**
+     * Adds an assignment to the assignment list under this module.
+     * The assignment to be added must not already exist in the assignment list.
+     */
+    public void addAssignment(Assignment a) {
+        assignmentList.add(a);
     }
 
     @Override
