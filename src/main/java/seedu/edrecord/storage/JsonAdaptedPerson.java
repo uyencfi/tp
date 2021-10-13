@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.edrecord.commons.exceptions.IllegalValueException;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
 import seedu.edrecord.model.person.Name;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String mod;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +37,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("edrecord") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("module") String mod, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.mod = mod;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        mod = source.getModule().getCode();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +106,16 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (mod == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
+        }
+        if (!Module.MODULE_SYSTEM.hasModule(new Module(mod))) {
+            throw new IllegalValueException(Module.MESSAGE_DOES_NOT_EXIST);
+        }
+        final Module modelModule = Module.MODULE_SYSTEM.getModule(mod);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelModule, modelTags);
     }
 
 }

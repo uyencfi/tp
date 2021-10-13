@@ -5,9 +5,11 @@ import static seedu.edrecord.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLA
 import static seedu.edrecord.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.edrecord.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.edrecord.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.edrecord.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.edrecord.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.edrecord.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
@@ -28,6 +30,7 @@ import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.storage.JsonEdRecordStorage;
+import seedu.edrecord.storage.JsonModuleSystemStorage;
 import seedu.edrecord.storage.JsonUserPrefsStorage;
 import seedu.edrecord.storage.StorageManager;
 import seedu.edrecord.testutil.PersonBuilder;
@@ -46,7 +49,9 @@ public class LogicManagerTest {
         JsonEdRecordStorage edRecordStorage =
                 new JsonEdRecordStorage(temporaryFolder.resolve("edRecord.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(edRecordStorage, userPrefsStorage);
+        JsonModuleSystemStorage moduleSystemStorage = new JsonModuleSystemStorage(
+                temporaryFolder.resolve("moduleSystem.json"));
+        StorageManager storage = new StorageManager(edRecordStorage, moduleSystemStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,12 +80,15 @@ public class LogicManagerTest {
                 new JsonEdRecordIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionEdRecord.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(edRecordStorage, userPrefsStorage);
+        JsonModuleSystemStorage moduleSystemStorage =
+                new JsonModuleSystemStorage(temporaryFolder.resolve("ioExceptionModuleSystem.json"));
+        StorageManager storage = new StorageManager(edRecordStorage, moduleSystemStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
+        setTypicalModuleSystem();
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + ADDRESS_DESC_AMY + MODULE_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
@@ -129,7 +137,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getEdRecord(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getEdRecord(), model.getModuleSystem(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

@@ -19,7 +19,10 @@ import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ReadOnlyEdRecord;
+import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
+import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.testutil.PersonBuilder;
 
@@ -139,6 +142,41 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getModuleSystemFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setModuleSystemFilePath(Path moduleSystemFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setModuleSystem(ReadOnlyModuleSystem moduleSystem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyModuleSystem getModuleSystem() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(Module mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addModule(Module mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -149,7 +187,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setModuleFilter(Predicate<Person> predicate) {
+        public void setModuleFilter(PartOfModulePredicate predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Module getSelectedModule() {
             throw new AssertionError("This method should not be called.");
         }
     }

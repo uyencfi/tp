@@ -1,6 +1,7 @@
 package seedu.edrecord.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edrecord.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +9,9 @@ import java.util.Set;
 
 import seedu.edrecord.commons.core.index.Index;
 import seedu.edrecord.commons.util.StringUtil;
+import seedu.edrecord.logic.commands.MakeModuleCommand;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
 import seedu.edrecord.model.person.Name;
@@ -25,6 +28,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -120,5 +124,39 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into an {@code Module} for associating to a Module.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static Module parseModule(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!Module.MODULE_SYSTEM.hasModule(trimmedModuleCode)) {
+            throw new ParseException(Module.MESSAGE_DOES_NOT_EXIST);
+        }
+        return Module.MODULE_SYSTEM.getModule(moduleCode);
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into an {@code Module} for MakeModuleCommand.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @return new Module with given module code.
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static Module parseMakeModule(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!Module.isValidNewModule(trimmedModuleCode)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        } else if (Module.MODULE_SYSTEM.hasModule(moduleCode)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MakeModuleCommand.MESSAGE_DUPLICATE_MODULE));
+        }
+        return new Module(trimmedModuleCode);
     }
 }

@@ -3,6 +3,7 @@ package seedu.edrecord.logic.commands;
 import static seedu.edrecord.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.edrecord.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.edrecord.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.edrecord.testutil.TypicalModules.getTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.getTypicalEdRecord;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalEdRecord(), new UserPrefs());
-        expectedModel = new ModelManager(model.getEdRecord(), new UserPrefs());
+        model = new ModelManager(getTypicalEdRecord(), getTypicalModuleSystem(), new UserPrefs());
+        expectedModel = new ModelManager(model.getEdRecord(), model.getModuleSystem(), new UserPrefs());
     }
 
     @Test

@@ -18,13 +18,17 @@ import seedu.edrecord.logic.LogicManager;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ModelManager;
+import seedu.edrecord.model.ModuleSystem;
 import seedu.edrecord.model.ReadOnlyEdRecord;
+import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.util.SampleDataUtil;
 import seedu.edrecord.storage.EdRecordStorage;
 import seedu.edrecord.storage.JsonEdRecordStorage;
+import seedu.edrecord.storage.JsonModuleSystemStorage;
 import seedu.edrecord.storage.JsonUserPrefsStorage;
+import seedu.edrecord.storage.ModuleSystemStorage;
 import seedu.edrecord.storage.Storage;
 import seedu.edrecord.storage.StorageManager;
 import seedu.edrecord.storage.UserPrefsStorage;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         EdRecordStorage edRecordStorage = new JsonEdRecordStorage(userPrefs.getEdRecordFilePath());
-        storage = new StorageManager(edRecordStorage, userPrefsStorage);
+        ModuleSystemStorage moduleSystemStorage = new JsonModuleSystemStorage(userPrefs.getModuleSystemFilePath());
+        storage = new StorageManager(edRecordStorage, moduleSystemStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,11 +74,30 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s edrecord and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s edrecord, module system
+     * and {@code userPrefs}. <br>
      * The data from the sample edrecord will be used instead if {@code storage}'s edrecord is not found,
      * or an empty edrecord will be used instead if errors occur when reading {@code storage}'s edrecord.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+
+        Optional<ReadOnlyModuleSystem> moduleSystemOptional;
+        ReadOnlyModuleSystem initialModuleData;
+        try {
+            moduleSystemOptional = storage.readModuleSystem();
+            if (!moduleSystemOptional.isPresent()) {
+                logger.info("Module data file not found. Will be starting with a sample modules");
+            }
+            initialModuleData = moduleSystemOptional.orElseGet(SampleDataUtil::getSampleModuleSystem);
+        } catch (DataConversionException e) {
+            logger.warning("Module data file not in the correct format. Will be starting with "
+                    + "an empty ModuleSystem");
+            initialModuleData = new ModuleSystem();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleSystem");
+            initialModuleData = new ModuleSystem();
+        }
+
         Optional<ReadOnlyEdRecord> edRecordOptional;
         ReadOnlyEdRecord initialData;
         try {
@@ -90,7 +114,8 @@ public class MainApp extends Application {
             initialData = new EdRecord();
         }
 
-        return new ModelManager(initialData, userPrefs);
+
+        return new ModelManager(initialData, initialModuleData, userPrefs);
     }
 
     private void initLogging(Config config) {

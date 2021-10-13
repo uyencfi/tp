@@ -2,6 +2,7 @@ package seedu.edrecord.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.edrecord.model.person.PartOfModulePredicate.PREDICATE_SHOW_ALL_MODULES;
 
 import java.nio.file.Path;
 import java.util.Optional;
@@ -12,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.commons.core.LogsCenter;
+import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 
 /**
@@ -21,27 +24,31 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final EdRecord edRecord;
+    private final ModuleSystem moduleSystem;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
-    private Predicate<Person> selectedModulePredicate;
+    private PartOfModulePredicate selectedModulePredicate;
+    private Module selectedModule;
 
     /**
-     * Initializes a ModelManager with the given edRecord and userPrefs.
+     * Initializes a ModelManager with the given edRecord, moduleSystem and userPrefs.
      */
-    public ModelManager(ReadOnlyEdRecord edRecord, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEdRecord edRecord, ReadOnlyModuleSystem moduleSystem,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(edRecord, userPrefs);
+        requireAllNonNull(edRecord, moduleSystem, userPrefs);
 
-        logger.fine("Initializing with edrecord: " + edRecord + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + edRecord + " , module system " + moduleSystem
+                + " and user prefs " + userPrefs);
 
         this.edRecord = new EdRecord(edRecord);
+        this.moduleSystem = new ModuleSystem(moduleSystem);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.edRecord.getPersonList());
     }
 
     public ModelManager() {
-        this(new EdRecord(), new UserPrefs());
+        this(new EdRecord(), new ModuleSystem(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -77,6 +84,17 @@ public class ModelManager implements Model {
     public void setEdRecordFilePath(Path edRecordFilePath) {
         requireNonNull(edRecordFilePath);
         userPrefs.setEdRecordFilePath(edRecordFilePath);
+    }
+
+    @Override
+    public Path getModuleSystemFilePath() {
+        return userPrefs.getEdRecordFilePath();
+    }
+
+    @Override
+    public void setModuleSystemFilePath(Path moduleSystemFilePath) {
+        requireNonNull(moduleSystemFilePath);
+        userPrefs.setModuleSystemFilePath(moduleSystemFilePath);
     }
 
     //=========== EdRecord ================================================================================
@@ -115,6 +133,34 @@ public class ModelManager implements Model {
         edRecord.setPerson(target, editedPerson);
     }
 
+    //=========== ModuleSystem ===============================================================================
+
+    @Override
+    public void setModuleSystem(ReadOnlyModuleSystem moduleSystem) {
+        this.moduleSystem.resetData(moduleSystem);
+    }
+
+    @Override
+    public ReadOnlyModuleSystem getModuleSystem() {
+        return moduleSystem;
+    }
+
+    @Override
+    public boolean hasModule(Module mod) {
+        requireNonNull(mod);
+        return moduleSystem.hasModule(mod);
+    }
+
+    @Override
+    public void deleteModule(Module target) {
+        moduleSystem.removeModule(target);
+    }
+
+    @Override
+    public void addModule(Module mod) {
+        moduleSystem.addModule(mod);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,17 +173,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModuleFilter(Predicate<Person> modulePredicate) {
+    public void setModuleFilter(PartOfModulePredicate modulePredicate) {
         requireNonNull(modulePredicate);
         this.selectedModulePredicate = modulePredicate;
+        this.selectedModule = modulePredicate.getModule();
         filteredPersons.setPredicate(modulePredicate);
+    }
+
+    @Override
+    public Module getSelectedModule() {
+        return this.selectedModule;
     }
 
     @Override
     public void setSearchFilter(Predicate<Person> searchPredicate) {
         requireNonNull(searchPredicate);
         Predicate<Person> modulePredicate =
-                Optional.ofNullable(this.selectedModulePredicate).orElse(PREDICATE_SHOW_ALL_PERSONS);
+                Optional.ofNullable(this.selectedModulePredicate).orElse(PREDICATE_SHOW_ALL_MODULES);
         filteredPersons.setPredicate(modulePredicate.and(searchPredicate));
     }
 
@@ -156,6 +208,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return edRecord.equals(other.edRecord)
+                && moduleSystem.equals(other.moduleSystem)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

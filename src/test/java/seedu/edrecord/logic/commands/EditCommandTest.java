@@ -12,6 +12,7 @@ import static seedu.edrecord.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.edrecord.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.edrecord.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.edrecord.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.edrecord.testutil.TypicalModules.getTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.getTypicalEdRecord;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import seedu.edrecord.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ModelManager;
+import seedu.edrecord.model.ModuleSystem;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.testutil.EditPersonDescriptorBuilder;
@@ -32,7 +34,7 @@ import seedu.edrecord.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalEdRecord(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEdRecord(), getTypicalModuleSystem(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +44,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()), new UserPrefs());
+        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()),
+                new ModuleSystem(model.getModuleSystem()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +66,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()), new UserPrefs());
+        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()),
+                new ModuleSystem(model.getModuleSystem()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +80,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()), new UserPrefs());
+        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()),
+                new ModuleSystem(model.getModuleSystem()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +97,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()), new UserPrefs());
+        Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()),
+                new ModuleSystem(model.getModuleSystem()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

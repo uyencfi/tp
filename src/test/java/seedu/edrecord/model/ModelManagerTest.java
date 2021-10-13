@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edrecord.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalModules.getTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.ALICE;
 import static seedu.edrecord.testutil.TypicalPersons.BENSON;
 
@@ -27,6 +28,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new EdRecord(), new EdRecord(modelManager.getEdRecord()));
+        assertEquals(new ModuleSystem(), new ModuleSystem(modelManager.getModuleSystem()));
     }
 
     @Test
@@ -98,10 +100,11 @@ public class ModelManagerTest {
         EdRecord edRecord = new EdRecordBuilder().withPerson(ALICE).withPerson(BENSON).build();
         EdRecord differentEdRecord = new EdRecord();
         UserPrefs userPrefs = new UserPrefs();
+        ModuleSystem moduleSystem = getTypicalModuleSystem();
 
         // same values -> returns true
-        modelManager = new ModelManager(edRecord, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(edRecord, userPrefs);
+        modelManager = new ModelManager(edRecord, moduleSystem, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(edRecord, moduleSystem, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +117,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different edRecord -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentEdRecord, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentEdRecord, moduleSystem, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.setSearchFilter(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(edRecord, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(edRecord, moduleSystem, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.setSearchFilter(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +130,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setEdRecordFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(edRecord, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(edRecord, moduleSystem, differentUserPrefs)));
     }
 }
