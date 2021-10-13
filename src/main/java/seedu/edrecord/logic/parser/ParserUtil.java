@@ -161,30 +161,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String code} into an {@code Group} for associating to a Group in a module.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code code} is invalid or already exists in module.
-     */
-    public static Group parseGroup(String moduleCode, String groupCode) throws ParseException {
-        requireNonNull(moduleCode);
-        Module mod = Module.MODULE_SYSTEM.getModule(moduleCode);
-
-        requireNonNull(groupCode);
-        String trimmedGroupCode = groupCode.trim();
-
-        if (!mod.getGroupSystem().hasGroup(trimmedGroupCode)) {
-            throw new ParseException(Group.MESSAGE_DOES_NOT_EXIST);
-        }
-
-        return mod.getGroup(trimmedGroupCode);
-    }
-
-    /**
      * Parses a {@code String code} into an {@code Group} for associating to a Group.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code code} is invalid or already exists.
+     * @throws ParseException if the given {@code code} is invalid.
      */
     public static Group parseGroup(String groupCode) throws ParseException {
         requireNonNull(groupCode);
@@ -198,13 +178,9 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @return new Group with given group code.
-     * @throws ParseException if the given {@code groupCode} is invalid or already exists in module with
-     *                        {@code moduleCode}.
+     * @throws ParseException if the given {@code groupCode} is invalid.
      */
-    public static Group parseMakeGroup(String moduleCode, String groupCode) throws ParseException {
-        requireNonNull(moduleCode);
-        Module mod = Module.MODULE_SYSTEM.getModule(moduleCode);
-
+    public static Group parseMakeGroup(String groupCode) throws ParseException {
         requireNonNull(groupCode);
         String trimmedGroupCode = groupCode.trim();
 

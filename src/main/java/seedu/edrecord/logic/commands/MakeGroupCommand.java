@@ -2,6 +2,8 @@ package seedu.edrecord.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.Model;
@@ -18,8 +20,11 @@ public class MakeGroupCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a new class for module "
             + "with the class and module code specified.\n"
-            + "Parameters: GROUP_CODE\n"
-            + "Example: " + COMMAND_WORD + " T07 ";
+            + PREFIX_MODULE + "MODULE "
+            + PREFIX_GROUP + "GROUP "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_MODULE + "CS2103 "
+            + PREFIX_GROUP + "T01 ";
 
     public static final String MESSAGE_DUPLICATE_GROUP = "Class already exists in %1$s";
     public static final String MESSAGE_SUCCESS = "Class %1$s created in %2$s!";
@@ -45,7 +50,7 @@ public class MakeGroupCommand extends Command {
             throw new CommandException(Module.MESSAGE_DOES_NOT_EXIST);
         }
 
-        Module mod = Module.MODULE_SYSTEM.getModule(module.getCode());
+        Module mod = model.getModule(module);
         if (mod.hasGroup(group)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_GROUP, mod));
         }

@@ -7,7 +7,7 @@ import seedu.edrecord.logic.commands.MakeModuleCommand;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 import seedu.edrecord.model.module.Module;
 
-public class MakeModCommandParser implements Parser<MakeModuleCommand> {
+public class MakeModuleCommandParser implements Parser<MakeModuleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code MakeModuleCommand}

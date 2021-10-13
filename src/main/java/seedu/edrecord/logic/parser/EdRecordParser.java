@@ -16,6 +16,7 @@ import seedu.edrecord.logic.commands.ExitCommand;
 import seedu.edrecord.logic.commands.FindCommand;
 import seedu.edrecord.logic.commands.HelpCommand;
 import seedu.edrecord.logic.commands.ListCommand;
+import seedu.edrecord.logic.commands.MakeGroupCommand;
 import seedu.edrecord.logic.commands.MakeModuleCommand;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 
@@ -56,7 +57,10 @@ public class EdRecordParser {
             return new DeleteCommandParser().parse(arguments);
 
         case MakeModuleCommand.COMMAND_WORD:
-            return new MakeModCommandParser().parse(arguments);
+            return new MakeModuleCommandParser().parse(arguments);
+
+        case MakeGroupCommand.COMMAND_WORD:
+            return new MakeGroupCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

@@ -29,7 +29,7 @@ public class JsonAdaptedGroup {
     }
 
     @JsonValue
-    public String getGroupName() {
+    public String getCode() {
         return code;
     }
 
@@ -44,5 +44,4 @@ public class JsonAdaptedGroup {
         }
         return new Group(code);
     }
-
 }
