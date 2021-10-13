@@ -54,7 +54,7 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return String.format("%s - Weightage: %s, maximum score: %s", name, weightage, maxScore);
+        return String.format("%s - Weightage: %s, Maximum Score: %s", name, weightage, maxScore);
     }
 
     @Override

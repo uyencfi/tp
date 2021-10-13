@@ -15,7 +15,6 @@ import seedu.edrecord.model.assignment.exceptions.DuplicateAssignmentException;
  * A list of assignments that enforces uniqueness among its elements and does not allow nulls.
  * An assignment is considered unique by comparing using {@code Assignment#isSameAssignment(Assignment)}.
  * As such, adding and updating of assignments uses Assignment#isSameAssignment(Assignment) for equality
- * As such, adding and updating of assignments uses Assignment#isSameAssignment(Assignment) for equality
  * so as to ensure that the assignment being added or updated is unique in terms of identity in the
  * UniqueAssignmentList. However, the removal of an assignment uses Assignment#equals(Object) so as
  * to ensure that the person with exactly the same fields will be removed.
@@ -49,7 +48,6 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
             throw new DuplicateAssignmentException();
         }
         internalList.add(toAdd);
-        System.out.println(internalList);
     }
 
     /**
@@ -95,7 +93,7 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
      * Replaces the contents of this list with {@code assignments}.
      * {@code assignments} must not contain duplicate assignments.
      */
-    public void setPersons(List<Assignment> assignments) {
+    public void setAssignments(List<Assignment> assignments) {
         requireAllNonNull(assignments);
         if (!assignmentsAreUnique(assignments)) {
             throw new DuplicateAssignmentException();

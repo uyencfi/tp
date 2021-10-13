@@ -204,10 +204,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasAssignmentInCurrentModule(Assignment assignment) {
-        if (!hasSelectedModule()) {
-            return false;
-        }
-        return selectedModule.hasAssignment(assignment);
+        return hasSelectedModule() && selectedModule.hasAssignment(assignment);
     }
 
     @Override
