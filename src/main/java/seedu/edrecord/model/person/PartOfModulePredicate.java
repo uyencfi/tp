@@ -8,7 +8,7 @@ import seedu.edrecord.model.module.Module;
  * Tests if a {@code Person} is part of a module.
  */
 public class PartOfModulePredicate implements Predicate<Person> {
-    public static final PartOfModulePredicate PREDICATE_SHOW_ALL_MODULES = new PartOfModulePredicate("unused") {
+    public static final PartOfModulePredicate PREDICATE_SHOW_ALL_MODULES = new PartOfModulePredicate("*") {
         public boolean test(Person person) {
             return true;
         }
