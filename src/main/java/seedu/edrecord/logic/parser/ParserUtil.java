@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.edrecord.commons.core.index.Index;
 import seedu.edrecord.commons.util.StringUtil;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
+import seedu.edrecord.model.assignment.MaxScore;
+import seedu.edrecord.model.assignment.Weightage;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Address;
@@ -155,5 +157,35 @@ public class ParserUtil {
         }
 
         return new Module(trimmedModuleCode);
+    }
+
+    /**
+     * Parses a {@code String weightage} into a {@code Weightage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weightage} is invalid.
+     */
+    public static Weightage parseWeightage(String weightage) throws ParseException {
+        requireNonNull(weightage);
+        String trimmedWeightage = weightage.trim();
+        if (!Weightage.isValidWeightage(trimmedWeightage)) {
+            throw new ParseException(Weightage.MESSAGE_CONSTRAINTS);
+        }
+        return new Weightage(trimmedWeightage);
+    }
+
+    /**
+     * Parses a {@code String maxScore} into a {@code MaxScore}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code maxScore} is invalid.
+     */
+    public static MaxScore parseMaxScore(String maxScore) throws ParseException {
+        requireNonNull(maxScore);
+        String trimmedScore = maxScore.trim();
+        if (!MaxScore.isValidMaxScore(trimmedScore)) {
+            throw new ParseException(MaxScore.MESSAGE_CONSTRAINTS);
+        }
+        return new MaxScore(trimmedScore);
     }
 }
