@@ -10,11 +10,11 @@ import seedu.edrecord.model.module.Module;
  */
 public class PartOfModulePredicate implements Predicate<Person> {
     public static final PartOfModulePredicate PREDICATE_SHOW_ALL_MODULES =
-            new PartOfModulePredicate(CdCommand.WILDCARD_MODULE_CODE) {
-                public boolean test(Person person) {
-                    return true;
-                }
-            };
+        new PartOfModulePredicate(CdCommand.WILDCARD_MODULE_CODE) {
+            public boolean test(Person person) {
+                return true;
+            }
+        };
 
     private final Module module;
 
