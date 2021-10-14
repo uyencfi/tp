@@ -114,7 +114,7 @@ public interface Model {
 
     /**
      * Adds the given module.
-     * {@code person} must not already exist in EdRecord.
+     * {@code mod} must not already exist in EdRecord.
      */
     void addModule(Module mod);
 
