@@ -1,9 +1,14 @@
 package seedu.edrecord.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.edrecord.commons.exceptions.IllegalValueException;
+import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
 
 /**
@@ -11,14 +16,22 @@ import seedu.edrecord.model.module.Module;
  */
 class JsonAdaptedModule {
 
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "Assignment list for this module contains duplicates.";
+
     private final String code;
+    private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedModule} with the given {@code mod}.
+     * Constructs a {@code JsonAdaptedModule} with the given module code and assignments.
      */
     @JsonCreator
-    public JsonAdaptedModule(String code) {
+    public JsonAdaptedModule(@JsonProperty("code") String code,
+                             @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
         this.code = code;
+        if (assignments != null) {
+            this.assignments.addAll(assignments);
+        }
+        System.out.println(code + " has " + assignments.size());
     }
 
     /**
@@ -26,15 +39,13 @@ class JsonAdaptedModule {
      */
     public JsonAdaptedModule(Module source) {
         code = source.getCode();
-    }
-
-    @JsonValue
-    public String getCode() {
-        return code;
+        assignments.addAll(source.getAssignmentList().stream()
+                .map(JsonAdaptedAssignment::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted module object into the model's {@code Module} object.
+     * Converts this {@code JsonAdaptedModule} object into the model's {@code Module} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
@@ -42,7 +53,15 @@ class JsonAdaptedModule {
         if (Module.MODULE_SYSTEM.hasModule(code)) {
             throw new IllegalValueException(Module.MESSAGE_DUPLICATE);
         }
-        return new Module(code);
+        Module module = new Module(code);
+        for (JsonAdaptedAssignment jsonAdaptedAssignment : assignments) {
+            Assignment asg = jsonAdaptedAssignment.toModelType();
+            if (module.hasAssignment(asg)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ASSIGNMENT);
+            }
+            module.addAssignment(asg);
+        }
+        return module;
     }
 
 }

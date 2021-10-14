@@ -10,7 +10,7 @@ import static seedu.edrecord.commons.util.AppUtil.checkArgument;
 public class MaxScore {
     public static final String MESSAGE_CONSTRAINTS = "Assignment maximum score should be a non-negative integer";
 
-    private final Float maxScore;
+    public final Float maxScore;
 
     /**
      * Constructs a {@code Weightage} object.

@@ -178,7 +178,10 @@ public class ModelManager implements Model {
     public void setModuleFilter(PartOfModulePredicate modulePredicate) {
         requireNonNull(modulePredicate);
         this.selectedModulePredicate = modulePredicate;
-        this.selectedModule = modulePredicate.getModule();
+
+        String currentModuleCode = modulePredicate.getModuleCode();
+        this.selectedModule = moduleSystem.getModule(currentModuleCode);
+
         filteredPersons.setPredicate(modulePredicate);
     }
 

@@ -2,6 +2,7 @@ package seedu.edrecord.model.module;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.collections.ObservableList;
 import seedu.edrecord.model.ModuleSystem;
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.assignment.UniqueAssignmentList;
@@ -16,9 +17,7 @@ public class Module {
     public static final String MESSAGE_DOES_NOT_EXIST = "Module with that code has yet to be created.";
     public static final String MESSAGE_DUPLICATE = "Module with that code has already been created.";
 
-    /*
-     * The module code must not have any whitespace characters.
-     */
+    /* The module code must not have any whitespace characters. */
     public static final String VALIDATION_REGEX = "[^\\s]+";
 
     public static final ModuleSystem MODULE_SYSTEM = new ModuleSystem();
@@ -39,6 +38,13 @@ public class Module {
 
     public String getCode() {
         return code;
+    }
+
+    /**
+     * Returns a view of this module's assignment list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Assignment> getAssignmentList() {
+        return assignmentList.asUnmodifiableObservableList();
     }
 
     /**

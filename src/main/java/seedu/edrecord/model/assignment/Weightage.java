@@ -11,7 +11,7 @@ public class Weightage {
     public static final String MESSAGE_CONSTRAINTS =
             "Assignment weightage should be a non-negative integer or float (max 2 decimal numbers) from 0 to 100";
 
-    private final Float weightage;
+    public final Float weightage;
 
     /**
      * Constructs a {@code Weightage} object.
