@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.edrecord.commons.exceptions.IllegalValueException;
 import seedu.edrecord.model.group.GroupSystem;
 import seedu.edrecord.model.module.Module;
-import seedu.edrecord.model.person.Name;
+import seedu.edrecord.model.name.Name;
 import seedu.edrecord.storage.group.JsonAdaptedGroup;
 
 /**
@@ -52,7 +52,7 @@ class JsonAdaptedModule {
         if (code == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "module code"));
         }
-        if (!Module.isValidNewModule(code)) {
+        if (!Module.isValidModule(code)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         if (Module.MODULE_SYSTEM.hasModule(code)) {

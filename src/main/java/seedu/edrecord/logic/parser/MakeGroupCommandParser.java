@@ -29,7 +29,7 @@ public class MakeGroupCommandParser implements Parser<MakeGroupCommand> {
         }
 
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-        Group group = ParserUtil.parseMakeGroup(argMultimap.getValue(PREFIX_GROUP).get());
+        Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
 
         return new MakeGroupCommand(group, module);
     }

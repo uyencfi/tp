@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.edrecord.model.assignment.Assignment;
+import seedu.edrecord.model.assignment.UniqueAssignmentList;
 import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.group.GroupSystem;
 import seedu.edrecord.model.group.ReadOnlyGroupSystem;
-import seedu.edrecord.model.assignment.Assignment;
-import seedu.edrecord.model.assignment.UniqueAssignmentList;
 
 /**
  * Represents a module in EdRecord.
@@ -69,15 +69,20 @@ public class Module {
     /**
      * Returns true if a given string is a valid module code.
      */
-    public static boolean isValidNewModule(String test) {
+    public static boolean isValidModule(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if the module given has the same module code.
      */
-    public boolean isSameModule(Module toCheck) {
-        return this.code.equals(toCheck.getCode());
+    public boolean isSameModule(Module otherModule) {
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getCode().equals(getCode());
     }
 
     //=========== GroupSystem ================================================================================
@@ -131,7 +136,8 @@ public class Module {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
                 && code.equals(((Module) other).code)
-                && groupSystem.equals(((Module) other).groupSystem)); // state check
+                && groupSystem.equals(((Module) other).groupSystem)
+                && assignmentList.equals(((Module) other).assignmentList)); // state check
     }
 
     @Override

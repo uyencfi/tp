@@ -10,7 +10,6 @@ import seedu.edrecord.commons.core.index.Index;
 import seedu.edrecord.commons.util.StringUtil;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 import seedu.edrecord.model.group.Group;
-import seedu.edrecord.model.group.GroupSystem;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Address;
@@ -127,7 +126,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String moduleCode} into an {@code Module} for associating to a Module.
+     * Parses a {@code String moduleCode} into a {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code moduleCode} is invalid.
@@ -136,52 +135,24 @@ public class ParserUtil {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.trim();
 
+        if (!Module.isValidModule(trimmedModuleCode)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+
         return new Module(trimmedModuleCode);
     }
 
     /**
-     * Parses a {@code String moduleCode} into an {@code Module} for MakeModuleCommand.
+     * Parses a {@code String code} into a {@code Group}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @return new Module with given module code.
-     * @throws ParseException if the given {@code moduleCode} is invalid.
-     */
-    public static Module parseMakeModule(String moduleCode) throws ParseException {
-        requireNonNull(moduleCode);
-        String trimmedModuleCode = moduleCode.trim();
-
-        if (!Module.isValidNewModule(trimmedModuleCode)) {
-            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
-        }
-
-        return new Module(trimmedModuleCode, new GroupSystem());
-    }
-
-    /**
-     * Parses a {@code String code} into an {@code Group} for associating to a Group.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code code} is invalid.
+     * @throws ParseException if the given {@code groupCode} is invalid.
      */
     public static Group parseGroup(String groupCode) throws ParseException {
         requireNonNull(groupCode);
         String trimmedGroupCode = groupCode.trim();
 
-        return new Group(trimmedGroupCode);
-    }
-
-    /**
-     * Parses a {@code String groupCode} into an {@code groupCode} for MakeGroupCommand.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @return new Group with given group code.
-     * @throws ParseException if the given {@code groupCode} is invalid.
-     */
-    public static Group parseMakeGroup(String groupCode) throws ParseException {
-        requireNonNull(groupCode);
-        String trimmedGroupCode = groupCode.trim();
-
-        if (!Group.isValidNewGroup(trimmedGroupCode)) {
+        if (!Group.isValidGroup(trimmedGroupCode)) {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
 

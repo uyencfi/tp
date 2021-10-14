@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("group") String group, @JsonProperty("module") String mod,
+                             @JsonProperty("module") String mod, @JsonProperty("group") String group,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -114,6 +114,9 @@ class JsonAdaptedPerson {
         if (mod == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
         }
+        if (!Module.isValidModule(mod)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
+        }
         if (!Module.MODULE_SYSTEM.hasModule(mod)) {
             throw new IllegalValueException(Module.MESSAGE_DOES_NOT_EXIST);
         }
@@ -121,6 +124,9 @@ class JsonAdaptedPerson {
 
         if (group == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName()));
+        }
+        if (!Group.isValidGroup(group)) {
+            throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
         }
         if (!modelModule.getGroupSystem().hasGroup(group)) {
             throw new IllegalValueException(Group.MESSAGE_DOES_NOT_EXIST);

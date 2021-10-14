@@ -40,7 +40,7 @@ public class Group {
     /**
      * Returns true if a given string is a valid group code.
      */
-    public static boolean isValidNewGroup(String test) {
+    public static boolean isValidGroup(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

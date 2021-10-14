@@ -68,7 +68,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyModuleSystem getSampleModuleSystem() {
-        ModuleSystem sampleMs = Module.MODULE_SYSTEM;
+        ModuleSystem sampleMs = new ModuleSystem();
         for (Module sampleModule : getSampleModules()) {
             sampleMs.addModule(sampleModule);
         }

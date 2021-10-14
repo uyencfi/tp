@@ -39,7 +39,7 @@ public class JsonAdaptedGroup {
      * @throws IllegalValueException if there were any data constraints violated in the adapted group.
      */
     public Group toModelType() throws IllegalValueException {
-        if (!Group.isValidNewGroup(code)) {
+        if (!Group.isValidGroup(code)) {
             throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
         }
         return new Group(code);

@@ -2,6 +2,7 @@ package seedu.edrecord.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalGroups.getTypicalGroupSystem;
 import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 
 import java.nio.file.Path;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.edrecord.commons.exceptions.IllegalValueException;
 import seedu.edrecord.commons.util.JsonUtil;
 import seedu.edrecord.model.EdRecord;
+import seedu.edrecord.model.person.Person;
 import seedu.edrecord.testutil.TypicalPersons;
 
 public class JsonSerializableEdRecordTest {
@@ -28,6 +30,9 @@ public class JsonSerializableEdRecordTest {
                 JsonSerializableEdRecord.class).get();
         EdRecord edRecordFromFile = dataFromFile.toModelType();
         EdRecord typicalPersonsEdRecord = TypicalPersons.getTypicalEdRecord();
+        for (Person typicalPerson : typicalPersonsEdRecord.getPersonList()) {
+            typicalPerson.getModule().setGroupSystem(getTypicalGroupSystem());
+        }
         assertEquals(edRecordFromFile, typicalPersonsEdRecord);
     }
 

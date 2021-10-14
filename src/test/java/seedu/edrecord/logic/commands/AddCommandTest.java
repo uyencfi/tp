@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalModules.getTypicalModules;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -252,6 +253,12 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public boolean hasModule(Module module) {
+            requireNonNull(module);
+            return getTypicalModules().stream().anyMatch(module::isSameModule);
         }
 
         @Override

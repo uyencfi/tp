@@ -1,5 +1,7 @@
 package seedu.edrecord.testutil;
 
+import static seedu.edrecord.testutil.TypicalGroups.getTypicalGroupSystem;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,9 +14,9 @@ import seedu.edrecord.model.module.ModuleSystem;
  */
 public class TypicalModules {
 
-    public static final Module CS2103 = new Module("CS2103");
-    public static final Module CS2103T = new Module("CS2103T");
-    public static final Module CS3230 = new Module("CS3230");
+    public static final Module CS2103 = new Module("CS2103", getTypicalGroupSystem());
+    public static final Module CS2103T = new Module("CS2103T", getTypicalGroupSystem());
+    public static final Module CS3230 = new Module("CS3230", getTypicalGroupSystem());
 
     private TypicalModules() {} // prevents instantiation
 

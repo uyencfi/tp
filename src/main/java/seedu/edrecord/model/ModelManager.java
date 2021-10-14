@@ -27,7 +27,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final EdRecord edRecord;
-    private final ModuleSystem moduleSystem;
+    private final ModuleSystem moduleSystem = Module.MODULE_SYSTEM;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private PartOfModulePredicate selectedModulePredicate;
@@ -45,14 +45,14 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
 
         this.edRecord = new EdRecord(edRecord);
-        this.moduleSystem = new ModuleSystem(moduleSystem);
+        this.moduleSystem.resetData(moduleSystem);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.edRecord.getPersonList());
         selectedModule = null;
     }
 
     public ModelManager() {
-        this(new EdRecord(), Module.MODULE_SYSTEM, new UserPrefs());
+        this(new EdRecord(), new ModuleSystem(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================

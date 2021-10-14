@@ -21,7 +21,7 @@ public class MakeModuleCommandParser implements Parser<MakeModuleCommand> {
 
         Module mod;
         try {
-            mod = ParserUtil.parseMakeModule(argMultimap.getPreamble());
+            mod = ParserUtil.parseModule(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, MakeModuleCommand.MESSAGE_USAGE), pe);
