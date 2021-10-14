@@ -16,6 +16,7 @@ public class ListModulesCommand extends Command {
 
     public static final String COMMAND_WORD = "lsmods";
     public static final String MESSAGE_SUCCESS = "Here are your modules: %s.";
+    public static final String MODULE_LIST_DELIM = ", ";
 
     @Override
     public CommandResult execute(Model model) {
@@ -29,7 +30,7 @@ public class ListModulesCommand extends Command {
             moduleStringList.add(m.toString());
         }
 
-        String moduleList = String.join(", ", moduleStringList);
+        String moduleList = String.join(MODULE_LIST_DELIM, moduleStringList);
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleList));
     }
 
