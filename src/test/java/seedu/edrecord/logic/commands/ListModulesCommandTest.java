@@ -5,6 +5,9 @@ import static seedu.edrecord.testutil.TypicalModules.getTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalModules.getTypicalModules;
 import static seedu.edrecord.testutil.TypicalPersons.getTypicalEdRecord;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +15,6 @@ import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ModelManager;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.module.Module;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListModulesCommandTest {
     private Model model;
