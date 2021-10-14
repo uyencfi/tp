@@ -9,7 +9,7 @@ import static seedu.edrecord.commons.util.AppUtil.checkArgument;
  */
 public class Info {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Info can take any values, and it should not be blank";
 
     /*
      * The first character of info must not be a whitespace,
