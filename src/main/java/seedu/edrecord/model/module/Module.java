@@ -135,7 +135,7 @@ public class Module {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && code.equals(((Module) other).code)
+                && code.equalsIgnoreCase(((Module) other).code)
                 && groupSystem.equals(((Module) other).groupSystem)
                 && assignmentList.equals(((Module) other).assignmentList)); // state check
     }

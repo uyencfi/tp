@@ -3,7 +3,7 @@ package seedu.edrecord.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.edrecord.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.edrecord.logic.commands.CommandTestUtil.VALID_INFO_BOB;
 import static seedu.edrecord.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.edrecord.testutil.Assert.assertThrows;
 import static seedu.edrecord.testutil.TypicalPersons.ALICE;
@@ -46,7 +46,7 @@ public class EdRecordTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         EdRecordStub newData = new EdRecordStub(newPersons);
@@ -73,7 +73,7 @@ public class EdRecordTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInEdRecord_returnsTrue() {
         edRecord.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withInfo(VALID_INFO_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(edRecord.hasPerson(editedAlice));
     }

@@ -22,6 +22,7 @@ import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.util.SampleDataUtil;
 import seedu.edrecord.storage.EdRecordStorage;
@@ -89,6 +90,7 @@ public class MainApp extends Application {
                 logger.info("Module data file not found. Will be starting with a sample modules");
             }
             initialModuleData = moduleSystemOptional.orElseGet(SampleDataUtil::getSampleModuleSystem);
+            initialModuleData = new ModuleSystem(initialModuleData);
         } catch (DataConversionException e) {
             logger.warning("Module data file not in the correct format. Will be starting with "
                     + "an empty ModuleSystem");

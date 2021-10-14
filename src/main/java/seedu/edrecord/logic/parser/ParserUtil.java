@@ -9,11 +9,13 @@ import java.util.Set;
 import seedu.edrecord.commons.core.index.Index;
 import seedu.edrecord.commons.util.StringUtil;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
+import seedu.edrecord.model.assignment.MaxScore;
+import seedu.edrecord.model.assignment.Weightage;
 import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
-import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
+import seedu.edrecord.model.person.Info;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
 
@@ -69,18 +71,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String info} into a {@code Info}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code info} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Info parseInfo(String info) throws ParseException {
+        requireNonNull(info);
+        String trimmedInfo = info.trim();
+        if (!Info.isValidInfo(trimmedInfo)) {
+            throw new ParseException(Info.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Info(trimmedInfo);
     }
 
     /**
@@ -157,5 +159,35 @@ public class ParserUtil {
         }
 
         return new Group(trimmedGroupCode);
+    }
+
+    /**
+     * Parses a {@code String weightage} into a {@code Weightage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weightage} is invalid.
+     */
+    public static Weightage parseWeightage(String weightage) throws ParseException {
+        requireNonNull(weightage);
+        String trimmedWeightage = weightage.trim();
+        if (!Weightage.isValidWeightage(trimmedWeightage)) {
+            throw new ParseException(Weightage.MESSAGE_CONSTRAINTS);
+        }
+        return new Weightage(trimmedWeightage);
+    }
+
+    /**
+     * Parses a {@code String maxScore} into a {@code MaxScore}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code maxScore} is invalid.
+     */
+    public static MaxScore parseMaxScore(String maxScore) throws ParseException {
+        requireNonNull(maxScore);
+        String trimmedScore = maxScore.trim();
+        if (!MaxScore.isValidMaxScore(trimmedScore)) {
+            throw new ParseException(MaxScore.MESSAGE_CONSTRAINTS);
+        }
+        return new MaxScore(trimmedScore);
     }
 }

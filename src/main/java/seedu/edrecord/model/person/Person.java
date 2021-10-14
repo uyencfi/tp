@@ -24,7 +24,7 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Info info;
     private final Module module;
     private final Group group;
     private final Set<Tag> tags = new HashSet<>();
@@ -32,12 +32,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Module module, Group group, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Info info, Module module, Group group, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, info, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.info = info;
         this.module = module;
         this.group = group;
         this.tags.addAll(tags);
@@ -55,8 +55,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Info getInfo() {
+        return info;
     }
 
     public Module getModule() {
@@ -106,7 +106,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getInfo().equals(getInfo())
                 && otherPerson.getModule().equals(getModule())
                 && otherPerson.getGroup().equals(getGroup())
                 && otherPerson.getTags().equals(getTags());
@@ -115,7 +115,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, module, group, tags);
+        return Objects.hash(name, phone, email, info, module, group, tags);
     }
 
     @Override
@@ -126,8 +126,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
+                .append("; Info: ")
+                .append(getInfo())
                 .append("; Module: ")
                 .append(getModule())
                 .append("; Group: ")

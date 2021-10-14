@@ -24,7 +24,7 @@ public class CdCommandParser implements Parser<CdCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, CdCommand.MESSAGE_USAGE));
         }
 
-        if (trimmedArgs.equalsIgnoreCase("*")) {
+        if (trimmedArgs.equalsIgnoreCase(CdCommand.WILDCARD_MODULE_CODE)) {
             return new CdCommand(PREDICATE_SHOW_ALL_MODULES);
         }
 

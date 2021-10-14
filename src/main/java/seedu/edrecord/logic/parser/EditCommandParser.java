@@ -2,9 +2,9 @@ package seedu.edrecord.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -35,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_INFO,
                         PREFIX_MODULE, PREFIX_GROUP, PREFIX_TAG);
 
         Index index;
@@ -56,8 +56,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_INFO).isPresent()) {
+            editPersonDescriptor.setInfo(ParserUtil.parseInfo(argMultimap.getValue(PREFIX_INFO).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             editPersonDescriptor.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));

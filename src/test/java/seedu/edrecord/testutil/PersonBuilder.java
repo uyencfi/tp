@@ -6,8 +6,8 @@ import java.util.Set;
 import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
-import seedu.edrecord.model.person.Address;
 import seedu.edrecord.model.person.Email;
+import seedu.edrecord.model.person.Info;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.model.person.Phone;
 import seedu.edrecord.model.tag.Tag;
@@ -21,14 +21,14 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_INFO = "2 weeks ahead in assignments";
     public static final String DEFAULT_MODULE = "CS2103";
     public static final String DEFAULT_GROUP = "T03";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Info info;
     private Module module;
     private Group group;
     private Set<Tag> tags;
@@ -40,7 +40,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        info = new Info(DEFAULT_INFO);
         module = new Module(DEFAULT_MODULE);
         group = new Group(DEFAULT_GROUP);
         tags = new HashSet<>();
@@ -53,7 +53,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        info = personToCopy.getInfo();
         module = personToCopy.getModule();
         group = personToCopy.getGroup();
         tags = new HashSet<>(personToCopy.getTags());
@@ -76,10 +76,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Info} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withInfo(String info) {
+        this.info = new Info(info);
         return this;
     }
 
@@ -116,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, module, group, tags);
+        return new Person(name, phone, email, info, module, group, tags);
     }
 
 }
