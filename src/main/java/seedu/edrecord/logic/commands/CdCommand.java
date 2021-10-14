@@ -17,6 +17,7 @@ import seedu.edrecord.model.person.PartOfModulePredicate;
 public class CdCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
+    public static final String WILDCARD_MODULE_CODE = "*";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Changes the currently selected module. Use '*' to show all modules.\n"
@@ -36,7 +37,7 @@ public class CdCommand extends Command {
         requireNonNull(model);
 
         Module module = predicate.getModule();
-        if (!(module.toString().equals("*") || model.hasModule(module))) {
+        if (!(module.toString().equals(WILDCARD_MODULE_CODE) || model.hasModule(module))) {
             throw new CommandException(String.format(MESSAGE_NO_SUCH_MODULE, module));
         }
 

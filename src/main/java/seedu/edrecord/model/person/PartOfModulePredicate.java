@@ -2,17 +2,19 @@ package seedu.edrecord.model.person;
 
 import java.util.function.Predicate;
 
+import seedu.edrecord.logic.commands.CdCommand;
 import seedu.edrecord.model.module.Module;
 
 /**
  * Tests if a {@code Person} is part of a module.
  */
 public class PartOfModulePredicate implements Predicate<Person> {
-    public static final PartOfModulePredicate PREDICATE_SHOW_ALL_MODULES = new PartOfModulePredicate("*") {
-        public boolean test(Person person) {
-            return true;
-        }
-    };
+    public static final PartOfModulePredicate PREDICATE_SHOW_ALL_MODULES =
+            new PartOfModulePredicate(CdCommand.WILDCARD_MODULE_CODE) {
+                public boolean test(Person person) {
+                    return true;
+                }
+            };
 
     private final Module module;
 
