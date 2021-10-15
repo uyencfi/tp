@@ -22,7 +22,7 @@ public class Module {
 
     public static final ModuleSystem MODULE_SYSTEM = new ModuleSystem();
 
-    public final String code;
+    private final String code;
     private final UniqueAssignmentList assignmentList;
 
     /**
