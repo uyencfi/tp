@@ -3,8 +3,8 @@ package seedu.edrecord.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.edrecord.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.edrecord.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.edrecord.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.edrecord.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.edrecord.logic.commands.CommandTestUtil.INFO_DESC_AMY;
 import static seedu.edrecord.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.edrecord.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.edrecord.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -88,7 +88,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + MODULE_DESC_AMY;
+                + INFO_DESC_AMY + MODULE_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

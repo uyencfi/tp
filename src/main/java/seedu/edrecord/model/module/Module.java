@@ -85,7 +85,7 @@ public class Module {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && code.equals(((Module) other).code)); // state check
+                && code.equalsIgnoreCase(((Module) other).code)); // state check
     }
 
     @Override
