@@ -58,7 +58,13 @@ public class Module {
      * Returns true if the module given has the same module code.
      */
     public boolean isSameModule(Module toCheck) {
-        return this.equals(toCheck);
+        if (toCheck == this) {
+            return true;
+        }
+        if (toCheck == null) {
+            return false;
+        }
+        return code.equals(toCheck.getCode());
     }
 
     /**
@@ -83,9 +89,15 @@ public class Module {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Module // instanceof handles nulls
-                && code.equalsIgnoreCase(((Module) other).code)); // state check
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Module)) {
+            return false;
+        }
+        Module otherModule = (Module) other;
+        return code.equals(otherModule.code)
+                && assignmentList.equals(otherModule.assignmentList);
     }
 
     @Override
