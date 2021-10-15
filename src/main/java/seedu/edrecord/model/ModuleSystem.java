@@ -98,6 +98,13 @@ public class ModuleSystem implements ReadOnlyModuleSystem {
         return modules.getModule(code);
     }
 
+    /**
+     * Clears all modules in the Module System.
+     */
+    public void clear() {
+        modules.clear();
+    }
+
     //// util methods
 
     @Override

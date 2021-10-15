@@ -31,7 +31,6 @@ class JsonAdaptedModule {
         if (assignments != null) {
             this.assignments.addAll(assignments);
         }
-        System.out.println(code + " has " + assignments.size());
     }
 
     /**
@@ -52,6 +51,9 @@ class JsonAdaptedModule {
     public Module toModelType() throws IllegalValueException {
         if (Module.MODULE_SYSTEM.hasModule(code)) {
             throw new IllegalValueException(Module.MESSAGE_DUPLICATE);
+        }
+        if (!Module.isValidNewModule(code)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
         }
         Module module = new Module(code);
         for (JsonAdaptedAssignment jsonAdaptedAssignment : assignments) {
