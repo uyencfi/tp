@@ -29,7 +29,7 @@ public class ModuleSystem implements ReadOnlyModuleSystem {
     public ModuleSystem() {}
 
     /**
-     * Creates an ModuleSystem using the Modules in the {@code toBeCopied}
+     * Creates a ModuleSystem using the Modules in the {@code toBeCopied}
      */
     public ModuleSystem(ReadOnlyModuleSystem toBeCopied) {
         this();

@@ -2,8 +2,6 @@ package seedu.edrecord.model.group;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.edrecord.model.module.ModuleSystem;
-
 /**
  * Represents a student's class group in EdRecord.
  * Guarantees: immutable; is always valid
@@ -12,14 +10,11 @@ public class Group {
 
     public static final String MESSAGE_CONSTRAINTS = "Class code cannot have whitespaces.";
     public static final String MESSAGE_DOES_NOT_EXIST = "Class with that code has yet to be created.";
-    public static final String MESSAGE_DUPLICATE = "Class with that code has already been created.";
 
     /*
      * The class code must not have any whitespace characters.
      */
     public static final String VALIDATION_REGEX = "[^\\s]+";
-
-    public static final ModuleSystem GROUP_SYSTEM = new ModuleSystem();
 
     public final String code;
 

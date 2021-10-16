@@ -47,8 +47,6 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new EdRecord(model.getEdRecord()),
                 new ModuleSystem(model.getModuleSystem()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        System.out.println(model.getFilteredPersonList().get(0));
-        System.out.println(editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

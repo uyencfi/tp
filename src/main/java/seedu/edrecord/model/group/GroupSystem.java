@@ -28,7 +28,7 @@ public class GroupSystem implements ReadOnlyGroupSystem {
     public GroupSystem() {}
 
     /**
-     * Creates an GroupSystem using the Groups in the {@code toBeCopied}
+     * Creates a GroupSystem using the Groups in the {@code toBeCopied}
      */
     public GroupSystem(ReadOnlyGroupSystem toBeCopied) {
         this();

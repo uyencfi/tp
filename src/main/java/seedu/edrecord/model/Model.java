@@ -115,7 +115,7 @@ public interface Model {
 
     /**
      * Adds the given module.
-     * {@code person} must not already exist in the module system.
+     * {@code module} must not already exist in the module system.
      */
     void addModule(Module mod);
 

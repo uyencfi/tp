@@ -127,6 +127,7 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+
     @Test
     public void toModelType_invalidGroup_throwsIllegalValueException() {
         setTypicalModuleSystem();
