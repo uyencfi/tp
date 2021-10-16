@@ -32,10 +32,11 @@ public class AddAssignmentCommandTest {
         assertThrows(NullPointerException.class, () -> new AddAssignmentCommand(null));
     }
 
-    // @Test
-    // public void execute_nullModel_throwsNullPointerException() {
-    //     assertThrows(NullPointerException.class, () -> new AddAssignmentCommand().execute(null));
-    // }
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        Assignment validAssignment = new AssignmentBuilder().build();
+        assertThrows(NullPointerException.class, () -> new AddAssignmentCommand(validAssignment).execute(null));
+    }
 
 
     @Test
@@ -44,8 +45,8 @@ public class AddAssignmentCommandTest {
         ModelStubWithoutSelectedModule modelStub = new ModelStubWithoutSelectedModule();
         AddAssignmentCommand addAssignmentCommand = new AddAssignmentCommand(validAssignment);
 
-        assertThrows(CommandException.class, AddAssignmentCommand.MESSAGE_NO_MODULE_SELECTED,
-                () -> addAssignmentCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddAssignmentCommand.MESSAGE_NO_MODULE_SELECTED, () -> addAssignmentCommand.execute(modelStub));
     }
 
     @Test
@@ -54,8 +55,8 @@ public class AddAssignmentCommandTest {
         ModelStub modelStub = new ModelStubWithAssignment(validAssignment);
         AddAssignmentCommand addAssignmentCommand = new AddAssignmentCommand(validAssignment);
 
-        assertThrows(CommandException.class, AddAssignmentCommand.MESSAGE_DUPLICATE_ASSIGNMENT,
-                () -> addAssignmentCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddAssignmentCommand.MESSAGE_DUPLICATE_ASSIGNMENT, () -> addAssignmentCommand.execute(modelStub));
     }
 
     @Test

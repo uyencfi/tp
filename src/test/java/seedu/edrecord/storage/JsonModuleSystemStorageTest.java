@@ -111,7 +111,7 @@ public class JsonModuleSystemStorageTest {
 
         // Save in new file and read back
         jsonModuleSystemStorage.saveModuleSystem(original, filePath);
-        Module.MODULE_SYSTEM.clear();    // clear the MODULE_SYSTEM static variable to prepare for reading back
+        Module.MODULE_SYSTEM.clear(); // clear the MODULE_SYSTEM static variable to prepare for reading back
         ReadOnlyModuleSystem readBack = jsonModuleSystemStorage.readModuleSystem(filePath).get();
         assertEquals(original, new ModuleSystem(readBack));
 
@@ -119,14 +119,14 @@ public class JsonModuleSystemStorageTest {
         original.addModule(CS2100);
         original.removeModule(CS2103);
         jsonModuleSystemStorage.saveModuleSystem(original, filePath);
-        Module.MODULE_SYSTEM.clear();    // clear the MODULE_SYSTEM static variable to prepare for reading back
+        Module.MODULE_SYSTEM.clear(); // clear the MODULE_SYSTEM static variable to prepare for reading back
         readBack = jsonModuleSystemStorage.readModuleSystem(filePath).get();
         assertEquals(original, new ModuleSystem(readBack));
 
         // Save and read without specifying file path
         original.addModule(CS2102);
         jsonModuleSystemStorage.saveModuleSystem(original); // file path not specified
-        Module.MODULE_SYSTEM.clear();    // clear the MODULE_SYSTEM static variable to prepare for reading back
+        Module.MODULE_SYSTEM.clear(); // clear the MODULE_SYSTEM static variable to prepare for reading back
         readBack = jsonModuleSystemStorage.readModuleSystem().get(); // file path not specified
         assertEquals(original, new ModuleSystem(readBack));
 
