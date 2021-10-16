@@ -230,12 +230,17 @@ public class EditCommand extends Command {
 
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
+            Optional<Module> thisModule = getModule();
+            Optional<Module> otherModule = e.getModule();
+            boolean isModuleEqual = (thisModule.equals(otherModule)) // default equality of Optional<T> objects
+                    || (thisModule.isPresent() && otherModule.isPresent() // or both modules are present
+                    && thisModule.get().isSameModule(otherModule.get())); // and have the same identity
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getInfo().equals(e.getInfo())
-                    && getModule().equals(e.getModule())
+                    && isModuleEqual
                     && getTags().equals(e.getTags());
         }
     }

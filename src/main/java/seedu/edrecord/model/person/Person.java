@@ -100,7 +100,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getInfo().equals(getInfo())
-                && otherPerson.getModule().equals(getModule())
+                && otherPerson.getModule().isSameModule(getModule())
                 && otherPerson.getTags().equals(getTags());
     }
 
