@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.edrecord.model.Model;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 
 /**
  * Lists all modules in the module system to the user.

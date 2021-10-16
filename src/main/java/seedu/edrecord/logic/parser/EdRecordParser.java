@@ -17,8 +17,8 @@ import seedu.edrecord.logic.commands.ExitCommand;
 import seedu.edrecord.logic.commands.FindCommand;
 import seedu.edrecord.logic.commands.HelpCommand;
 import seedu.edrecord.logic.commands.ListCommand;
-import seedu.edrecord.logic.commands.MakeGroupCommand;
 import seedu.edrecord.logic.commands.ListModulesCommand;
+import seedu.edrecord.logic.commands.MakeGroupCommand;
 import seedu.edrecord.logic.commands.MakeModuleCommand;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 
