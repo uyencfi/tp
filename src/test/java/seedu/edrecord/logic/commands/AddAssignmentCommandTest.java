@@ -18,10 +18,10 @@ import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ReadOnlyEdRecord;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.testutil.AssignmentBuilder;
@@ -182,6 +182,11 @@ public class AddAssignmentCommandTest {
 
         @Override
         public boolean hasModule(Module mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Module getModule(Module mod) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -7,8 +7,8 @@ import static seedu.edrecord.testutil.TypicalAssignments.PE;
 import static seedu.edrecord.testutil.TypicalAssignments.QUIZ;
 import static seedu.edrecord.testutil.TypicalAssignments.TP;
 import static seedu.edrecord.testutil.TypicalAssignments.TUTORIAL;
-
-import static seedu.edrecord.testutil.TypicalGroups.getTypicalGroupSystem;
+import static seedu.edrecord.testutil.TypicalGroups.T03;
+import static seedu.edrecord.testutil.TypicalGroups.T07;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +23,13 @@ import seedu.edrecord.model.module.ModuleSystem;
 public class TypicalModules {
 
     public static final Module CS2103 = new ModuleBuilder("CS2103")
-            .withAssignment(IP).withAssignment(TP).build();
+            .withAssignment(IP).withAssignment(TP)
+            .withGroup(T03).withGroup(T07).build();
     public static final Module CS2103T = new ModuleBuilder("CS2103T")
-            .withAssignment(PE).build();
+            .withAssignment(PE)
+            .withGroup(T03).withGroup(T07).build();
     public static final Module CS3230 = new ModuleBuilder("CS3230")
-            .build();
+            .withGroup(T03).withGroup(T07).build();
     public static final Module CS2100 = new ModuleBuilder("CS2100")
             .withAssignment(QUIZ).withAssignment(MIDTERM).withAssignment(FINAL).build();
     public static final Module CS2102 = new ModuleBuilder("CS2102")

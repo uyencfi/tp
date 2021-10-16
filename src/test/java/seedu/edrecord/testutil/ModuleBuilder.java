@@ -1,6 +1,7 @@
 package seedu.edrecord.testutil;
 
 import seedu.edrecord.model.assignment.Assignment;
+import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
 
 /**
@@ -20,6 +21,15 @@ public class ModuleBuilder {
         module.addAssignment(a);
         return this;
     }
+
+    /**
+     * Adds a new {@code Group} to the {@code Module} that we are building.
+     */
+    public ModuleBuilder withGroup(Group group) {
+        module.addGroup(group);
+        return this;
+    }
+
 
     public Module build() {
         return module;

@@ -14,11 +14,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.model.EdRecord;
-import seedu.edrecord.model.module.ModuleSystem;
 import seedu.edrecord.model.ReadOnlyEdRecord;
-import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.UserPrefs;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 
 public class StorageManagerTest {

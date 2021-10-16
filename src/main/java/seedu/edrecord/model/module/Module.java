@@ -2,10 +2,9 @@ package seedu.edrecord.model.module;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
-import seedu.edrecord.model.ModuleSystem;
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.assignment.UniqueAssignmentList;
 import seedu.edrecord.model.group.Group;
@@ -28,7 +27,7 @@ public class Module {
     public static final ModuleSystem MODULE_SYSTEM = new ModuleSystem();
 
     private final String code;
-    public final GroupSystem groupSystem;
+    private final GroupSystem groupSystem;
     private final UniqueAssignmentList assignmentList;
 
     /**

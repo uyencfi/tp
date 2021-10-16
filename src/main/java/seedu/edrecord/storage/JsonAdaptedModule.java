@@ -52,7 +52,7 @@ class JsonAdaptedModule {
         if (Module.MODULE_SYSTEM.hasModule(code)) {
             throw new IllegalValueException(Module.MESSAGE_DUPLICATE);
         }
-        if (!Module.isValidNewModule(code)) {
+        if (!Module.isValidModuleCode(code)) {
             throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
         }
         Module module = new Module(code);

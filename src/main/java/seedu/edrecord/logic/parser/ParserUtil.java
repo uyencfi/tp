@@ -137,7 +137,7 @@ public class ParserUtil {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.trim();
 
-        if (!Module.isValidModule(trimmedModuleCode)) {
+        if (!Module.isValidModuleCode(trimmedModuleCode)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
         }
 

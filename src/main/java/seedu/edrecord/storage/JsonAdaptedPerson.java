@@ -114,7 +114,7 @@ class JsonAdaptedPerson {
         if (mod == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
         }
-        if (!Module.isValidModule(mod)) {
+        if (!Module.isValidModuleCode(mod)) {
             throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
         }
         if (!Module.MODULE_SYSTEM.hasModule(mod)) {

@@ -17,9 +17,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.edrecord.commons.exceptions.DataConversionException;
-import seedu.edrecord.model.ModuleSystem;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
+import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 
 /**
  * A class to test ModuleSystem reading/saving.
