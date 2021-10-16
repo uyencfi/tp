@@ -18,6 +18,7 @@ import seedu.edrecord.logic.commands.FindCommand;
 import seedu.edrecord.logic.commands.HelpCommand;
 import seedu.edrecord.logic.commands.ListCommand;
 import seedu.edrecord.logic.commands.MakeGroupCommand;
+import seedu.edrecord.logic.commands.ListModulesCommand;
 import seedu.edrecord.logic.commands.MakeModuleCommand;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 
@@ -77,6 +78,9 @@ public class EdRecordParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListModulesCommand.COMMAND_WORD:
+            return new ListModulesCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -14,6 +14,7 @@ import seedu.edrecord.logic.parser.EdRecordParser;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ReadOnlyEdRecord;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.storage.Storage;
 
@@ -68,6 +69,11 @@ public class LogicManager implements Logic {
     @Override
     public Path getEdRecordFilePath() {
         return model.getEdRecordFilePath();
+    }
+
+    @Override
+    public Module getSelectedModule() {
+        return model.getSelectedModule();
     }
 
     @Override
