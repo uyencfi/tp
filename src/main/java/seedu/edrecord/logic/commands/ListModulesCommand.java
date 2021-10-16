@@ -14,7 +14,7 @@ import seedu.edrecord.model.module.Module;
  */
 public class ListModulesCommand extends Command {
 
-    public static final String COMMAND_WORD = "lsmods";
+    public static final String COMMAND_WORD = "lsmod";
     public static final String MESSAGE_SUCCESS = "Here are your modules: %s.";
     public static final String MODULE_LIST_DELIM = ", ";
 
