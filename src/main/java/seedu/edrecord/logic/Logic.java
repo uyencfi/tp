@@ -8,6 +8,7 @@ import seedu.edrecord.logic.commands.CommandResult;
 import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 import seedu.edrecord.model.ReadOnlyEdRecord;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Person;
 
 /**
@@ -37,6 +38,11 @@ public interface Logic {
      * Returns the user prefs' edrecord file path.
      */
     Path getEdRecordFilePath();
+
+    /**
+     * Returns the currently selected module.
+     */
+    Module getSelectedModule();
 
     /**
      * Returns the user prefs' GUI settings.
