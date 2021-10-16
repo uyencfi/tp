@@ -111,6 +111,7 @@ public class JsonModuleSystemStorageTest {
 
         // Save in new file and read back
         jsonModuleSystemStorage.saveModuleSystem(original, filePath);
+        Module.MODULE_SYSTEM.clear();    // clear the MODULE_SYSTEM static variable to prepare for reading back
         ReadOnlyModuleSystem readBack = jsonModuleSystemStorage.readModuleSystem(filePath).get();
         assertEquals(original, new ModuleSystem(readBack));
 

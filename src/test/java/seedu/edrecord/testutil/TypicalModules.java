@@ -15,6 +15,8 @@ public class TypicalModules {
     public static final Module CS2103 = new Module("CS2103");
     public static final Module CS2103T = new Module("CS2103T");
     public static final Module CS3230 = new Module("CS3230");
+    public static final Module CS2100 = new Module("CS2100");
+    public static final Module CS2102 = new Module("CS2102");
 
     private TypicalModules() {} // prevents instantiation
 
