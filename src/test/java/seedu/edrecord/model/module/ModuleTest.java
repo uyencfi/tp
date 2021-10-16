@@ -2,6 +2,7 @@ package seedu.edrecord.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.edrecord.testutil.TypicalGroups.getTypicalGroupSystem;
 import static seedu.edrecord.testutil.TypicalModules.CS2103;
 import static seedu.edrecord.testutil.TypicalModules.CS3230;
 
@@ -33,9 +34,9 @@ public class ModuleTest {
         assertFalse(CS2103.equals(null));
 
         // same module code -> returns true
-        assertTrue(CS2103.equals(new Module("CS2103")));
+        assertTrue(CS2103.equals(new Module("CS2103", getTypicalGroupSystem())));
 
         // different module code -> returns false
-        assertFalse(CS3230.equals(new Module("CS2103")));
+        assertFalse(CS3230.equals(new Module("CS2103", getTypicalGroupSystem())));
     }
 }

@@ -3,6 +3,7 @@ package seedu.edrecord.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Email;
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_INFO = "2 weeks ahead in assignments";
     public static final String DEFAULT_MODULE = "CS2103";
+    public static final String DEFAULT_GROUP = "T03";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Info info;
     private Module module;
+    private Group group;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         info = new Info(DEFAULT_INFO);
         module = new Module(DEFAULT_MODULE);
+        group = new Group(DEFAULT_GROUP);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         info = personToCopy.getInfo();
         module = personToCopy.getModule();
+        group = personToCopy.getGroup();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -102,8 +107,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Group} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGroup(String grp) {
+        this.group = new Group(grp);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, info, module, tags);
+        return new Person(name, phone, email, info, module, group, tags);
     }
 
 }

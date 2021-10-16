@@ -15,6 +15,7 @@ import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.UserPrefs;
+import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 
 public class StorageManagerTest {
 

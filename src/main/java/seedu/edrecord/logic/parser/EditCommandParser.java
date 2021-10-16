@@ -3,6 +3,7 @@ package seedu.edrecord.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_NAME;
@@ -35,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_INFO,
-                        PREFIX_MODULE, PREFIX_TAG);
+                        PREFIX_MODULE, PREFIX_GROUP, PREFIX_TAG);
 
         Index index;
 
@@ -60,6 +61,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             editPersonDescriptor.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GROUP).isPresent()) {
+            editPersonDescriptor.setGroup(ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

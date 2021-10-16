@@ -2,6 +2,7 @@ package seedu.edrecord.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,6 +11,7 @@ import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.Model;
+import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.Person;
 
 /**
@@ -26,6 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_INFO + "INFO "
             + PREFIX_MODULE + "MODULE "
+            + PREFIX_GROUP + "GROUP "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -33,8 +36,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_INFO + "A student "
             + PREFIX_MODULE + "CS2103 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_GROUP + "T01 "
+            + PREFIX_TAG + "weak";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in EdRecord";
@@ -55,6 +58,10 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (!model.hasModule(toAdd.getModule())) {
+            throw new CommandException(Module.MESSAGE_DOES_NOT_EXIST);
         }
 
         model.addPerson(toAdd);

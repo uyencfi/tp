@@ -1,4 +1,4 @@
-package seedu.edrecord.storage;
+package seedu.edrecord.storage.module;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.edrecord.commons.exceptions.IllegalValueException;
-import seedu.edrecord.model.ModuleSystem;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 
 /**
  * An Immutable ModuleSystem that is serializable to JSON format.

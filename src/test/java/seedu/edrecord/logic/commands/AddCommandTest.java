@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edrecord.testutil.Assert.assertThrows;
+import static seedu.edrecord.testutil.TypicalModules.getTypicalModules;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -19,10 +20,10 @@ import seedu.edrecord.logic.commands.exceptions.CommandException;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ReadOnlyEdRecord;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 import seedu.edrecord.testutil.PersonBuilder;
@@ -178,6 +179,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Module getModule(Module mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -247,6 +253,12 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public boolean hasModule(Module module) {
+            requireNonNull(module);
+            return getTypicalModules().stream().anyMatch(module::isSameModule);
         }
 
         @Override

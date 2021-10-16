@@ -23,7 +23,7 @@ public class ListModulesCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalEdRecord(), getTypicalModuleSystem(), new UserPrefs());
-        expectedModel = new ModelManager(model.getEdRecord(), model.getModuleSystem(), new UserPrefs());
+        expectedModel = new ModelManager(model.getEdRecord(), getTypicalModuleSystem(), new UserPrefs());
     }
 
     @Test
@@ -35,6 +35,7 @@ public class ListModulesCommandTest {
 
         String moduleList = String.join(ListModulesCommand.MODULE_LIST_DELIM, moduleStringList);
         String expectedOutput = String.format(ListModulesCommand.MESSAGE_SUCCESS, moduleList);
+        System.out.println(expectedOutput);
 
         CommandResult expectedCommandResult = new CommandResult(expectedOutput);
         assertCommandSuccess(new ListModulesCommand(), model, expectedCommandResult, expectedModel);

@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 import seedu.edrecord.commons.core.LogsCenter;
 import seedu.edrecord.commons.exceptions.DataConversionException;
 import seedu.edrecord.model.ReadOnlyEdRecord;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.UserPrefs;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 
 /**
  * Manages storage of EdRecord data in local storage.

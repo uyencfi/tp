@@ -2,12 +2,16 @@ package seedu.edrecord.model.module;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.edrecord.model.ModuleSystem;
+import java.util.Objects;
+
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.assignment.UniqueAssignmentList;
+import seedu.edrecord.model.group.Group;
+import seedu.edrecord.model.group.GroupSystem;
+import seedu.edrecord.model.group.ReadOnlyGroupSystem;
 
 /**
- * Represents a student's module in EdRecord.
+ * Represents a module in EdRecord.
  * Guarantees: immutable; is always valid
  */
 public class Module {
@@ -24,7 +28,23 @@ public class Module {
     public static final ModuleSystem MODULE_SYSTEM = new ModuleSystem();
 
     public final String code;
+    public final GroupSystem groupSystem;
     private final UniqueAssignmentList assignmentList;
+
+    /**
+     * Constructs a {@code Module}.
+     *
+     * @param code A valid module code.
+     * @param groupSystem A valid group system.
+     */
+    public Module(String code, GroupSystem groupSystem) {
+        requireNonNull(code);
+        this.code = code;
+
+        requireNonNull(groupSystem);
+        this.groupSystem = groupSystem;
+        this.assignmentList = new UniqueAssignmentList();
+    }
 
     /**
      * Constructs a {@code Module} containing an empty list of assignments.
@@ -34,6 +54,7 @@ public class Module {
     public Module(String code) {
         requireNonNull(code);
         this.code = code;
+        this.groupSystem = new GroupSystem();
         this.assignmentList = new UniqueAssignmentList();
     }
 
@@ -41,18 +62,53 @@ public class Module {
         return code;
     }
 
+    public GroupSystem getGroupSystem() {
+        return groupSystem;
+    }
+
     /**
      * Returns true if a given string is a valid module code.
      */
-    public static boolean isValidNewModule(String test) {
+    public static boolean isValidModule(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if the module given has the same module code.
      */
-    public boolean isSameModule(Module toCheck) {
-        return this.equals(toCheck);
+    public boolean isSameModule(Module otherModule) {
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getCode().equals(getCode());
+    }
+
+    //=========== GroupSystem ================================================================================
+
+    public void setGroupSystem(ReadOnlyGroupSystem groupSystem) {
+        this.groupSystem.resetData(groupSystem);
+    }
+
+    /**
+     * Returns true if groupSystem has a group with the same group code.
+     */
+    public boolean hasGroup(Group grp) {
+        requireNonNull(grp);
+        return groupSystem.hasGroup(grp);
+    }
+
+    public void deleteGroup(Group target) {
+        groupSystem.removeGroup(target);
+    }
+
+    public void addGroup(Group toAdd) {
+        groupSystem.addGroup(toAdd);
+    }
+
+    public Group getGroup(String groupCode) {
+        return groupSystem.getGroup(groupCode);
     }
 
     /**
@@ -79,11 +135,13 @@ public class Module {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && code.equalsIgnoreCase(((Module) other).code)); // state check
+                && code.equalsIgnoreCase(((Module) other).code)
+                && groupSystem.equals(((Module) other).groupSystem)
+                && assignmentList.equals(((Module) other).assignmentList)); // state check
     }
 
     @Override
     public int hashCode() {
-        return code.hashCode();
+        return Objects.hash(code, groupSystem);
     }
 }

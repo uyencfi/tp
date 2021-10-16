@@ -3,6 +3,7 @@ package seedu.edrecord.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.edrecord.logic.parser.CliSyntax.PREFIX_NAME;
@@ -38,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_INFO_BOB = "Has trouble understanding software engineering principles";
     public static final String VALID_MODULE_AMY = "CS2103";
     public static final String VALID_MODULE_BOB = "CS2103";
+    public static final String VALID_GROUP_AMY = "T03";
+    public static final String VALID_GROUP_BOB = "T03";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -51,6 +54,8 @@ public class CommandTestUtil {
     public static final String INFO_DESC_BOB = " " + PREFIX_INFO + VALID_INFO_BOB;
     public static final String MODULE_DESC_AMY = " " + PREFIX_MODULE + VALID_MODULE_AMY;
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
+    public static final String GROUP_DESC_AMY = " " + PREFIX_GROUP + VALID_GROUP_AMY;
+    public static final String GROUP_DESC_BOB = " " + PREFIX_GROUP + VALID_GROUP_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -58,7 +63,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_INFO_DESC = " " + PREFIX_INFO; // empty string not allowed for info
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS2100"; // /s not allowed for modules
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS 2103"; // whitespace not allowed
+    public static final String INVALID_GROUP_DESC = " " + PREFIX_GROUP + "T 99"; // whitespace not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

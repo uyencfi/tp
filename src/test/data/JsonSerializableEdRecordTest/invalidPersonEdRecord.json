@@ -4,6 +4,7 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street",
-    "module": "invalidCode"
+    "module": "invalidCode",
+    "group": "invalidCode"
   } ]
 }
