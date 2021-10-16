@@ -19,7 +19,7 @@ public class PartOfModulePredicate implements Predicate<Person> {
     private final Module module;
 
     public PartOfModulePredicate(String moduleCode) {
-        this.module = new Module(moduleCode);
+        this.module = new Module(moduleCode.toUpperCase());
     }
 
     /**

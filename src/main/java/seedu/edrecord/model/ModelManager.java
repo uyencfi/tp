@@ -15,6 +15,8 @@ import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.commons.core.LogsCenter;
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 
@@ -25,7 +27,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final EdRecord edRecord;
-    private final ModuleSystem moduleSystem;
+    private final ModuleSystem moduleSystem = Module.MODULE_SYSTEM;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private PartOfModulePredicate selectedModulePredicate;
@@ -43,7 +45,7 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
 
         this.edRecord = new EdRecord(edRecord);
-        this.moduleSystem = new ModuleSystem(moduleSystem);
+        this.moduleSystem.resetData(moduleSystem);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.edRecord.getPersonList());
         selectedModule = null;
@@ -161,6 +163,11 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module mod) {
         moduleSystem.addModule(mod);
+    }
+
+    @Override
+    public Module getModule(Module mod) {
+        return moduleSystem.getModule(mod);
     }
 
     //=========== Filtered Person List Accessors =============================================================

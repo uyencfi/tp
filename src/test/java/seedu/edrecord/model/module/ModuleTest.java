@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edrecord.testutil.TypicalAssignments.IP;
 import static seedu.edrecord.testutil.TypicalAssignments.TP;
+import static seedu.edrecord.testutil.TypicalGroups.getTypicalGroupSystem;
 import static seedu.edrecord.testutil.TypicalModules.CS2103;
 import static seedu.edrecord.testutil.TypicalModules.CS3230;
 
@@ -38,8 +39,12 @@ public class ModuleTest {
 
         // same module code, different assignments -> returns false
         assertFalse(CS2103.equals(new Module("CS2103")));
+        // same module code -> returns true
+        assertTrue(CS2103.equals(new Module("CS2103", getTypicalGroupSystem())));
 
         // same values -> returns true
         assertTrue(CS2103.equals(new ModuleBuilder("CS2103").withAssignment(IP).withAssignment(TP).build()));
+        // different module code -> returns false
+        assertFalse(CS3230.equals(new Module("CS2103", getTypicalGroupSystem())));
     }
 }

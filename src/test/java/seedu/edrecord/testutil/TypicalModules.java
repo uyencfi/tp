@@ -8,12 +8,14 @@ import static seedu.edrecord.testutil.TypicalAssignments.QUIZ;
 import static seedu.edrecord.testutil.TypicalAssignments.TP;
 import static seedu.edrecord.testutil.TypicalAssignments.TUTORIAL;
 
+import static seedu.edrecord.testutil.TypicalGroups.getTypicalGroupSystem;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.edrecord.model.ModuleSystem;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
@@ -30,6 +32,11 @@ public class TypicalModules {
             .withAssignment(QUIZ).withAssignment(MIDTERM).withAssignment(FINAL).build();
     public static final Module CS2102 = new ModuleBuilder("CS2102")
             .withAssignment(TUTORIAL).build();
+
+    // withGroups()
+    // public static final Module CS2103 = new Module("CS2103", getTypicalGroupSystem());
+    // public static final Module CS2103T = new Module("CS2103T", getTypicalGroupSystem());
+    // public static final Module CS3230 = new Module("CS3230", getTypicalGroupSystem());
 
     private TypicalModules() {} // prevents instantiation
 

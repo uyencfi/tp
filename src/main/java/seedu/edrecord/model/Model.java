@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.person.PartOfModulePredicate;
 import seedu.edrecord.model.person.Person;
 
@@ -114,9 +115,15 @@ public interface Model {
 
     /**
      * Adds the given module.
-     * {@code mod} must not already exist in EdRecord.
+     * {@code module} must not already exist in the module system.
      */
     void addModule(Module mod);
+
+    /**
+     * Returns the saved module equivalent of given {@code mod}.
+     * {@code mod} must already exist in the module system.
+     */
+    Module getModule(Module mod);
 
     /**
      * Returns an unmodifiable view of the filtered person list

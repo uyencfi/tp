@@ -8,9 +8,6 @@ import seedu.edrecord.model.Model;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.person.PartOfModulePredicate;
 
-// TODO: Consider updating UI to show the current selected module
-// TODO: Update UG/DG
-
 /**
  * Changes the selected module.
  */

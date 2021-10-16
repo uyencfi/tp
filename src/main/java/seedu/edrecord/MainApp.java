@@ -18,20 +18,21 @@ import seedu.edrecord.logic.LogicManager;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.Model;
 import seedu.edrecord.model.ModelManager;
-import seedu.edrecord.model.ModuleSystem;
 import seedu.edrecord.model.ReadOnlyEdRecord;
-import seedu.edrecord.model.ReadOnlyModuleSystem;
 import seedu.edrecord.model.ReadOnlyUserPrefs;
 import seedu.edrecord.model.UserPrefs;
+import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.model.util.SampleDataUtil;
 import seedu.edrecord.storage.EdRecordStorage;
 import seedu.edrecord.storage.JsonEdRecordStorage;
-import seedu.edrecord.storage.JsonModuleSystemStorage;
 import seedu.edrecord.storage.JsonUserPrefsStorage;
 import seedu.edrecord.storage.ModuleSystemStorage;
 import seedu.edrecord.storage.Storage;
 import seedu.edrecord.storage.StorageManager;
 import seedu.edrecord.storage.UserPrefsStorage;
+import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 import seedu.edrecord.ui.Ui;
 import seedu.edrecord.ui.UiManager;
 
@@ -89,13 +90,14 @@ public class MainApp extends Application {
                 logger.info("Module data file not found. Will be starting with a sample modules");
             }
             initialModuleData = moduleSystemOptional.orElseGet(SampleDataUtil::getSampleModuleSystem);
+            initialModuleData = new ModuleSystem(initialModuleData);
         } catch (DataConversionException e) {
             logger.warning("Module data file not in the correct format. Will be starting with "
                     + "an empty ModuleSystem");
-            initialModuleData = new ModuleSystem();
+            initialModuleData = Module.MODULE_SYSTEM;
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleSystem");
-            initialModuleData = new ModuleSystem();
+            initialModuleData = Module.MODULE_SYSTEM;
         }
 
         Optional<ReadOnlyEdRecord> edRecordOptional;

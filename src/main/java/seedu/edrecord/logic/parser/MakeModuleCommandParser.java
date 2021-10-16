@@ -7,7 +7,7 @@ import seedu.edrecord.logic.commands.MakeModuleCommand;
 import seedu.edrecord.logic.parser.exceptions.ParseException;
 import seedu.edrecord.model.module.Module;
 
-public class MakeModCommandParser implements Parser<MakeModuleCommand> {
+public class MakeModuleCommandParser implements Parser<MakeModuleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code MakeModuleCommand}
@@ -21,7 +21,7 @@ public class MakeModCommandParser implements Parser<MakeModuleCommand> {
 
         Module mod;
         try {
-            mod = ParserUtil.parseMakeModule(argMultimap.getPreamble());
+            mod = ParserUtil.parseModule(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, MakeModuleCommand.MESSAGE_USAGE), pe);

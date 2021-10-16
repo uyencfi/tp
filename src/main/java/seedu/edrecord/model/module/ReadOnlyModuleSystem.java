@@ -1,8 +1,6 @@
-package seedu.edrecord.model;
+package seedu.edrecord.model.module;
 
 import java.util.List;
-
-import seedu.edrecord.model.module.Module;
 
 /**
  * Unmodifiable view of a module system

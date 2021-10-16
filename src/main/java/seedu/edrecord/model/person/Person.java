@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.tag.Tag;
@@ -25,18 +26,20 @@ public class Person {
     // Data fields
     private final Info info;
     private final Module module;
+    private final Group group;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Info info, Module module, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Info info, Module module, Group group, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, info, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.info = info;
         this.module = module;
+        this.group = group;
         this.tags.addAll(tags);
     }
 
@@ -58,6 +61,10 @@ public class Person {
 
     public Module getModule() {
         return module;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 
     /**
@@ -101,13 +108,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getInfo().equals(getInfo())
                 && otherPerson.getModule().isSameModule(getModule())
+                && otherPerson.getGroup().equals(getGroup())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, info, module, tags);
+        return Objects.hash(name, phone, email, info, module, group, tags);
     }
 
     @Override
@@ -121,7 +129,9 @@ public class Person {
                 .append("; Info: ")
                 .append(getInfo())
                 .append("; Module: ")
-                .append(getModule());
+                .append(getModule())
+                .append("; Group: ")
+                .append(getGroup());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

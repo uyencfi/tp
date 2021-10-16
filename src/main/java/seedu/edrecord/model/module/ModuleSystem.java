@@ -1,12 +1,11 @@
-package seedu.edrecord.model;
+package seedu.edrecord.model.module;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.edrecord.model.module.Module;
-import seedu.edrecord.model.module.UniqueModuleList;
+import seedu.edrecord.model.group.GroupSystem;
 
 /**
  * Wraps all data at the module-system level
@@ -30,7 +29,7 @@ public class ModuleSystem implements ReadOnlyModuleSystem {
     public ModuleSystem() {}
 
     /**
-     * Creates an ModuleSystem using the Modules in the {@code toBeCopied}
+     * Creates a ModuleSystem using the Modules in the {@code toBeCopied}
      */
     public ModuleSystem(ReadOnlyModuleSystem toBeCopied) {
         this();
@@ -71,12 +70,12 @@ public class ModuleSystem implements ReadOnlyModuleSystem {
      */
     public boolean hasModule(String code) {
         requireNonNull(code);
-        return hasModule(new Module(code));
+        return hasModule(new Module(code, new GroupSystem()));
     }
 
     /**
      * Adds a module to the module system.
-     * The person must not already exist in the module system.
+     * The module must not already exist in the module system.
      */
     public void addModule(Module mod) {
         modules.add(mod);
@@ -92,7 +91,15 @@ public class ModuleSystem implements ReadOnlyModuleSystem {
 
     /**
      * Returns module with {@code code} from this {@code ModuleSystem}.
-     * module with same code as {@code code} must exist in the module system.
+     * Module with same code as {@code code} must exist in the module system.
+     */
+    public Module getModule(Module mod) {
+        return modules.getModule(mod);
+    }
+
+    /**
+     * Returns module with {@code code} from this {@code ModuleSystem}.
+     * Module with same code as {@code code} must exist in the module system.
      */
     public Module getModule(String code) {
         return modules.getModule(code);

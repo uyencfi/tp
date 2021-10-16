@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.edrecord.commons.exceptions.IllegalValueException;
+import seedu.edrecord.model.group.Group;
 import seedu.edrecord.model.module.Module;
 import seedu.edrecord.model.name.Name;
 import seedu.edrecord.model.person.Email;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String info;
     private final String mod;
+    private final String group;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,12 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String info,
-                             @JsonProperty("module") String mod, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("module") String mod, @JsonProperty("group") String group,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.info = info;
         this.mod = mod;
+        this.group = group;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,6 +62,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         info = source.getInfo().value;
         mod = source.getModule().getCode();
+        group = source.getGroup().getCode();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -109,13 +114,27 @@ class JsonAdaptedPerson {
         if (mod == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
         }
-        if (!Module.MODULE_SYSTEM.hasModule(new Module(mod))) {
+        if (!Module.isValidModule(mod)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
+        }
+        if (!Module.MODULE_SYSTEM.hasModule(mod)) {
             throw new IllegalValueException(Module.MESSAGE_DOES_NOT_EXIST);
         }
         final Module modelModule = Module.MODULE_SYSTEM.getModule(mod);
 
+        if (group == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName()));
+        }
+        if (!Group.isValidGroup(group)) {
+            throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
+        }
+        if (!modelModule.getGroupSystem().hasGroup(group)) {
+            throw new IllegalValueException(Group.MESSAGE_DOES_NOT_EXIST);
+        }
+        final Group modelGroup = modelModule.getGroup(group);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelInfo, modelModule, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelInfo, modelModule, modelGroup, modelTags);
     }
 
 }

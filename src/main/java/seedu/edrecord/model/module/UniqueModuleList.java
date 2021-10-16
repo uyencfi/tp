@@ -16,7 +16,7 @@ import seedu.edrecord.model.module.exceptions.ModuleNotFoundException;
  * A module is considered unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of
  * modules uses Module#isSameModule(Module) for equality so as to ensure that the module being added or updated is
  * unique in terms of identity in the UniqueModuleList. However, the removal of a module uses Module#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * as to ensure that the group with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
@@ -57,6 +57,20 @@ public class UniqueModuleList implements Iterable<Module> {
         if (!internalList.remove(toRemove)) {
             throw new ModuleNotFoundException();
         }
+    }
+
+    /**
+     * Gets the module with {@code code} from the list.
+     * The module must exist in the list.
+     */
+    public Module getModule(Module mod) {
+        requireNonNull(mod);
+        for (Module m : internalList) {
+            if (m.isSameModule(mod)) {
+                return m;
+            }
+        }
+        throw new ModuleNotFoundException();
     }
 
     /**
