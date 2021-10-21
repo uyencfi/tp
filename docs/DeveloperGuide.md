@@ -126,7 +126,9 @@ How the parsing works:
 The `Model` component,
 
 - stores EdRecord data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Person` objects (e.g., results of a search query that is under the selected module) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+  - to achieve this, 2 separate predicates are used: one that filters for the selected module and one that filters for the results of the search query
+  - the resulting filtered list is hence the logical conjunction of these two predicates
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -242,6 +244,20 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Separate view for assignments 
+
+#### Proposed Implementation
+
+A new command will be added: `view [asg/info]`. This command toggles the view between assignments and the default contact list.
+
+#### Assignment View
+
+This view will be optimized for verifying and grading assignments. 
+
+### Contact List View
+
+This is the current view of the app. This is optimized to display contact details.
 
 ---
 
