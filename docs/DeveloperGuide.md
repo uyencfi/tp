@@ -426,6 +426,7 @@ Use case ends.
 - 1a. The student list is empty.
 
   - 1a1. EdRecord shows a message informing user that the student list is empty.
+  
     Use case ends.
 
 **Use case: UC05 - Edit a student contact**
