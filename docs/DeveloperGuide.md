@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to create a new module.
-2.  EdRecord adds the new class to the specified module.
+2.  EdRecord adds the new module.
 
     Use case ends.
 
