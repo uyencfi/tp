@@ -319,7 +319,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `EdRecord` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Create a new class in a module**
+**Use case: UC01 - Create a new module**
+
+**MSS**
+
+1.  User requests to create a new module.
+2.  EdRecord adds the new class to the specified module.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. User specified module code is invalid.
+
+    - 1a1. EdRecord shows an error message informing the user module code is invalid and module code naming constraints.
+
+      Use case ends.
+
+- 1b. The module already exists.
+
+    - 1b1. EdRecord shows an error message informing the user module already exists.
+
+      Use case ends.
+      
+**Use case: UC02 - Create a new class in a module**
 
 **MSS**
 
@@ -336,7 +359,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC02 - Add a student contact**
+- 1b. The module already has a class with the same user specified class code.
+
+    - 1b1. EdRecord shows an error message informing the user class already exists in module.
+
+      Use case ends.
+
+**Use case: UC03 - Add a student contact**
 
 **MSS**
 
@@ -353,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC03 - List all student contacts**
+**Use Case: UC04 - List all student contacts**
 
 **MSS**
 
@@ -370,7 +399,7 @@ Use case ends.
       
     Use case ends.
 
-**Use case: UC04 - Edit a student contact**
+**Use case: UC05 - Edit a student contact**
 
 **MSS**
 
@@ -398,7 +427,7 @@ Use case ends.
     
     Use case resumes at step 1.
       
-**Use case: UC05 - Delete a student contact**
+**Use case: UC06 - Delete a student contact**
 
 **MSS**
 
@@ -420,7 +449,7 @@ Use case ends.
 
     Use case resumes at step 2.
     
-**Use case: UC06 - Add a student to their class**
+**Use case: UC07 - Add a student to their class**
 
 **MSS**
 
@@ -443,7 +472,7 @@ Use case ends.
 
     Use case ends.
 
-**Use case: UC07 - Edit module details**
+**Use case: UC08 - Edit module details**
 
 **MSS**
 
@@ -472,7 +501,7 @@ Use case ends.
 
     Use case resumes at step 2.
 
-**Use case: UC08 - Delete a module**
+**Use case: UC09 - Delete a module**
 
 **MSS**
 
@@ -495,7 +524,7 @@ Use case ends.
 
     Use case resumes at step 2.
     
-**Use case: UC09 - Create an assignment**
+**Use case: UC10 - Create an assignment**
 
 **MSS**
 
@@ -518,7 +547,7 @@ Use case ends.
 
     Use case ends.
 
-**Use Case: UC10 - List all assignments**
+**Use Case: UC11 - List all assignments**
 
 **MSS**
 
@@ -542,7 +571,7 @@ Use case ends.
       Use case ends.
 
 
-**Use case: UC11 - Edit assignment details**
+**Use case: UC12 - Edit assignment details**
 
 **MSS**
 
@@ -570,7 +599,7 @@ Use case ends.
 
     Use case resumes at step 1.
 
-**Use case: UC12 - Delete an assignment**
+**Use case: UC13 - Delete an assignment**
 
 **MSS**
 
@@ -592,7 +621,7 @@ Use case ends.
 
     Use case resumes at step 2.
 
-**Use case: UC13 - Add custom command aliases**
+**Use case: UC14 - Add custom command aliases**
 
 **MSS**
 
