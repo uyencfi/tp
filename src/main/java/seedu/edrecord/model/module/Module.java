@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.edrecord.model.assignment.Assignment;
 import seedu.edrecord.model.assignment.UniqueAssignmentList;
 import seedu.edrecord.model.group.Group;
@@ -20,15 +21,13 @@ public class Module {
     public static final String MESSAGE_DOES_NOT_EXIST = "Module with that code has yet to be created.";
     public static final String MESSAGE_DUPLICATE = "Module with that code has already been created.";
 
-    /*
-     * The module code must not have any whitespace characters.
-     */
+    /* The module code must not have any whitespace characters. */
     public static final String VALIDATION_REGEX = "[^\\s]+";
 
     public static final ModuleSystem MODULE_SYSTEM = new ModuleSystem();
 
-    public final String code;
-    public final GroupSystem groupSystem;
+    private final String code;
+    private final GroupSystem groupSystem;
     private final UniqueAssignmentList assignmentList;
 
     /**
@@ -67,9 +66,16 @@ public class Module {
     }
 
     /**
+     * Returns a view of this module's assignment list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Assignment> getAssignmentList() {
+        return assignmentList.asUnmodifiableObservableList();
+    }
+
+    /**
      * Returns true if a given string is a valid module code.
      */
-    public static boolean isValidModule(String test) {
+    public static boolean isValidModuleCode(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -80,12 +86,11 @@ public class Module {
         if (otherModule == this) {
             return true;
         }
-
-        return otherModule != null
-                && otherModule.getCode().equals(getCode());
+        if (otherModule == null) {
+            return false;
+        }
+        return code.equals(otherModule.getCode());
     }
-
-    //=========== GroupSystem ================================================================================
 
     public void setGroupSystem(ReadOnlyGroupSystem groupSystem) {
         this.groupSystem.resetData(groupSystem);
@@ -133,11 +138,16 @@ public class Module {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Module // instanceof handles nulls
-                && code.equalsIgnoreCase(((Module) other).code)
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Module)) {
+            return false;
+        }
+        Module otherModule = (Module) other;
+        return code.equalsIgnoreCase(otherModule.code)
                 && groupSystem.equals(((Module) other).groupSystem)
-                && assignmentList.equals(((Module) other).assignmentList)); // state check
+                && assignmentList.equals(otherModule.assignmentList);
     }
 
     @Override

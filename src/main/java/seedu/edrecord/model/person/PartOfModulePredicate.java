@@ -22,8 +22,12 @@ public class PartOfModulePredicate implements Predicate<Person> {
         this.module = new Module(moduleCode.toUpperCase());
     }
 
-    public Module getModule() {
-        return module;
+    /**
+     * Retrieves the code of the module for this predicate.
+     * @return The module code.
+     */
+    public String getModuleCode() {
+        return module.getCode();
     }
 
     @Override

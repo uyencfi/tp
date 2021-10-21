@@ -2,6 +2,7 @@ package seedu.edrecord.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.edrecord.testutil.TypicalModules.getTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalModules.setTypicalModuleSystem;
 import static seedu.edrecord.testutil.TypicalPersons.getTypicalEdRecord;
 
@@ -15,6 +16,9 @@ import seedu.edrecord.commons.core.GuiSettings;
 import seedu.edrecord.model.EdRecord;
 import seedu.edrecord.model.ReadOnlyEdRecord;
 import seedu.edrecord.model.UserPrefs;
+import seedu.edrecord.model.module.Module;
+import seedu.edrecord.model.module.ModuleSystem;
+import seedu.edrecord.model.module.ReadOnlyModuleSystem;
 import seedu.edrecord.storage.module.JsonModuleSystemStorage;
 
 public class StorageManagerTest {
@@ -51,11 +55,16 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void getPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
     public void edRecordReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonEdRecordStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonEdRecordStorageTest} class.
+         * More extensive testing of EdRecord saving/reading is done in {@link JsonEdRecordStorageTest} class.
          */
         EdRecord original = getTypicalEdRecord();
         setTypicalModuleSystem();
@@ -69,4 +78,25 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getEdRecordFilePath());
     }
 
+    @Test
+    public void moduleSystemReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonModuleSystemStorage} class.
+         * More extensive testing of ModuleSystem saving/reading is done in {@link JsonModuleSystemStorageTest} class.
+         */
+        ModuleSystem original = getTypicalModuleSystem();
+        storageManager.saveModuleSystem(original);
+
+        // Reset the MODULE_SYSTEM static variable before reading data
+        Module.MODULE_SYSTEM.clear();
+
+        ReadOnlyModuleSystem retrieved = storageManager.readModuleSystem().get();
+        assertEquals(original, new ModuleSystem(retrieved));
+    }
+
+    @Test
+    public void getModuleSystemFilePath() {
+        assertNotNull(storageManager.getModuleSystemFilePath());
+    }
 }

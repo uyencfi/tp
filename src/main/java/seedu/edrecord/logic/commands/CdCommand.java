@@ -33,9 +33,9 @@ public class CdCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Module module = predicate.getModule();
-        if (!(module.toString().equals(WILDCARD_MODULE_CODE) || model.hasModule(module))) {
-            throw new CommandException(String.format(MESSAGE_NO_SUCH_MODULE, module));
+        String moduleCode = predicate.getModuleCode();
+        if (!(moduleCode.equals(WILDCARD_MODULE_CODE) || model.hasModule(new Module(moduleCode)))) {
+            throw new CommandException(String.format(MESSAGE_NO_SUCH_MODULE, moduleCode));
         }
 
         model.setModuleFilter(predicate);

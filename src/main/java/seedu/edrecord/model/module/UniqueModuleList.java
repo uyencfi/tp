@@ -107,6 +107,13 @@ public class UniqueModuleList implements Iterable<Module> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Clears all modules in the list.
+     */
+    public void clear() {
+        internalList.clear();
+    }
+
     @Override
     public Iterator<Module> iterator() {
         return internalList.iterator();
