@@ -190,6 +190,8 @@ public class ModelManager implements Model {
         this.selectedModule = moduleSystem.getModule(currentModuleCode);
 
         filteredPersons.setPredicate(modulePredicate);
+
+        logger.fine(String.format("Module %s selected", currentModuleCode));
     }
 
     @Override
