@@ -50,6 +50,7 @@ public class LogicManager implements Logic {
             storage.saveEdRecord(model.getEdRecord());
             storage.saveModuleSystem(model.getModuleSystem());
         } catch (IOException ioe) {
+            logger.warning("Error in writing to file: " + ioe.getMessage());
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
