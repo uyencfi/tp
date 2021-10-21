@@ -599,7 +599,6 @@ Use case ends.
 
     Use case ends.
 
-
 **Use case: UC12 - Edit assignment details**
 
 **MSS**
