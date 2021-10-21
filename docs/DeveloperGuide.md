@@ -673,6 +673,14 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a person while on the main page
+   1. Test case: `add n/Bob p/1234567 e/bob@example.com m/CS2103 c/W-14-3 i/telegram @bob t/strong`<br>
+      Expected: Bob is added to bottom of the list of people, and the console shows the relevant information.
+2. Test case without optional fields: `add n/Bob p/1234567 e/bob@example.com m/CS2103 c/W-14-3 t/strong`<br>
+   Expected: Bob is added to the bottom of the list, but the optional `Info` field is omitted. The console also omits the `Info` field.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
