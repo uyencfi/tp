@@ -261,6 +261,20 @@ This is the current view of the app. This is optimized to display contact detail
 
 ---
 
+### \[Proposed\] Assign students grades for assignments
+
+#### Proposed Implementation
+
+A new command will be added: `grade a/ASSIGNMENT NAME s/STATUS g/GRADE`. This command allows the user to assign a Grade object to a student.
+
+Each student object will keep track of a list of assignments and respective grades.
+
+#### `Grade` object
+
+The `Grade` object contains the completion status of the assignment (Not submitted, Submitted, Graded) and the score that the student has achieved.
+
+---
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 - [Documentation guide](Documentation.md)
@@ -410,9 +424,9 @@ Use case ends.
 **Extensions**
 
 - 1a. The student list is empty.
+
+  - 1a1. EdRecord shows a message informing user that the student list is empty.
   
-  - 1a1. EdRecord shows a message informing user that the student list is empty. 
-      
     Use case ends.
 
 **Use case: UC05 - Edit a student contact**
@@ -436,11 +450,11 @@ Use case ends.
   - 2a1. EdRecord shows an error message.
 
     Use case resumes at step 1.
-    
+
 - 2b. User does not specify any valid fields to edit.
 
   - 2b1. EdRecord shows an error message.
-    
+
     Use case resumes at step 1.
       
 **Use case: UC06 - Delete a student contact**
@@ -477,11 +491,11 @@ Use case ends.
 **Extensions**
 
 - 1a. The student does not exist.
-  
+
   - 1a1. EdRecord shows an error message.
 
     Use case ends.
-      
+
 - 1b. The class does not exist.
 
   - 1b1. EdRecord shows an error message prompting user to create the class first.
@@ -552,13 +566,13 @@ Use case ends.
 **Extensions**
 
 - 1a. User has not navigated to a module.
-  
+
   - 1a1. EdRecord shows an error message.
-    
+
     Use case ends.
 
 - 1b. User does not provide required fields due date, maximum marks and assignment weightage
-  
+
   - 1b1. EdRecord shows an error message.
 
     Use case ends.
@@ -575,17 +589,16 @@ Use case ends.
 **Extensions**
 
 - 1a. User has not navigated to a module.
-  
+
   - 1a1. EdRecord shows an error message.
-    
+
     Use case ends.
 
 - 1b. The assignment list is empty.
 
-    - 1b1. EdRecord shows a message informing user that the student list is empty.
+  - 1b1. EdRecord shows a message informing user that the student list is empty.
 
-      Use case ends.
-
+    Use case ends.
 
 **Use case: UC12 - Edit assignment details**
 
@@ -650,9 +663,9 @@ Use case ends.
 - 1a. The command does not exist.
 
   - 1a1. EdRecord shows an error message.
-    
+
     Use case ends.
-    
+
 - 1b. The alias is already in use.
 
   - 1b1. EdRecord shows an error message.
