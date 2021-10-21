@@ -245,6 +245,24 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Create and manage assignments
+A module's assignments are stored in a `UniqueAssignmentList` under the module. Each assignment has a name, a weightage, and a maximum score. Assignments are differentiated using their names -- the `UniqueAssignmentList` ensures that no two assignments have the same name.
+
+To create an assignment, the user has to `cd` into a module first. EdRecord does not allow creating an assignment for module X while the user is currently in module Y.
+
+**Design considerations:**
+
+- **Alternative 1**: Store assignments under Group.
+
+  - Pros: User is able to create tailored assignment for each group under a module.
+  - Cons: More memory usage. Each group have to store the assignments, many of which are similar across the groups under that module.
+
+- **Alternative 2 (current choice)**: Store assignments under Module.
+
+  - Pros: Easier to implement. Better experience for user, who can `cd` into the module and use one command `lsasg` to view all assignments. In contrast, if the assignments are under groups, the user has to `cd` into the module and choose a group to view assignments, before he/she can view all assignments.
+  - Cons: Not able to create assignments on the group level.
+    
+
 ### \[Proposed\] Separate view for assignments 
 
 #### Proposed Implementation
